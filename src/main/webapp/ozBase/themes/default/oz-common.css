@@ -1,0 +1,76 @@
+/*
+ * 全局样式控制
+ * 功能：所有页面的通用样式设置：字体及间隔
+ * 修改：dragon 2007-07-01 
+ *		1)将全局字体控制配置在样式*{...}中
+ *		2)在样式*{...}中必须设置margin: 0px;padding: 0px;否则IE中form标签和表单创建信息之间会出现间隔
+ *		3)为了使Opera的input标签更自然点添加了样式input{...}
+ */
+
+/* 全局配置----字体及间隔*/
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{
+	margin:0;
+	padding:0;
+	font-size:12px;
+	font-family:"宋体","Tahoma","verdana","arial","helvetica","sans-serif";
+}
+img,body,html{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var{
+	font-style:normal;
+	font-weight:normal;
+}
+ol,ul{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+q:before,q:after{content:'';}
+input{
+	/*height:20px;*/
+	padding:2px 0px 0px 2px
+}
+select{
+	font-size:12px;
+	font-family:"Tahoma","verdana","arial","helvetica","sans-serif";
+}
+body{
+	color: #000000; 
+	overflow: auto;
+	text-decoration: none;
+	
+	/* 设置IE的滚动条*/
+	scrollbar-shadow-color: #dee3e7; 
+	scrollbar-3dlight-color: #d1d7dc;
+	scrollbar-arrow-color: #006699;
+	scrollbar-track-color: #efefef;
+	scrollbar-darkshadow-color: #98aab1;
+	scrollbar-face-color: #dee3e7;
+	background-color:#F8FAFD;
+}
+
+a:link { text-decoration:none; COLOR:#333333; }
+a:visited { text-decoration:none; COLOR:#000000; }
+a:active { text-decoration:none; COLOR:#000000; }
+a:hover { text-decoration:none; COLOR:#7D7B7B; }
+
+.oz-hidden{
+	display: none;
+}
+/* body样式 */
+.oz-body{
+	overflow: hidden;
+	background-color: #DEEBF4;/*#ECE9D8*/;
+}
+/* 对话框的body样式 */
+.oz-body-dlg{
+	overflow: hidden;
+	background-color: #DFE7EF;
+}
+.oz-body-dlg fieldset{
+	padding:5px;
+}
+/*数字字体*/
+.GeorgiaFont{
+	font-family:Georgia, Times New Roman, Times, serif;
+}
+.DivClear{
+	clear:both;
+}
