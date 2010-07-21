@@ -1,0 +1,76 @@
+/**
+ * 下拉框控件，fc为form control的缩写
+ * 作者：dragon rongjih@21cn.com 2009-01-15
+ */
+.oz-fc-select{
+	width:138px;
+	background-color:#FFFFFF;
+	border-color:#B5C9E2;
+	border-width:1px;
+	border-style:solid;
+	padding:0;
+	margin:0;
+	height:20px;
+	line-height:20px;
+	overflow:hidden;
+}
+.oz-fc-select input{
+	padding:4px 0 0 2px;
+	border:0;
+	width:120px;
+	height:16px;
+	float:left;
+}
+.oz-fc-select span{
+	display:block;
+	width:16px;
+	height:16px;
+	line-height:16px;
+	margin-top:2px;
+	float:left;
+	background-image:url(../../images/default/formControl/ico.gif);
+	background-repeat:no-repeat;
+}
+.oz-fc-select selectIcon{
+	background-position:0 0;
+}
+
+/** 下拉框的选项列表 */
+.oz-fc-options{
+	background-color:#FFFFFF;
+	border:1px solid #ACA899;
+	padding:0;
+	margin:0;
+	height:20px;
+	line-height:20px;
+	text-align:left;
+	position:absolute;
+	left:10px;
+	top:175px;
+	overflow:visible;
+	height:auto;/*加上这句ff中高度才会包含所有列表*/
+	min-width:138px;/*IE6不支持*/
+	width:138px;
+}
+.oz-fc-options ul{
+	list-style:none;
+}
+.oz-fc-options li{
+	height:20px;
+	line-height:20px;
+}
+.oz-fc-options span{
+	display:block;
+	height:16px;
+	line-height:16px;
+	float:left;
+	margin-top:2px;
+}
+.oz-fc-options .icon{
+	width:16px;
+	background-color: red;
+}
+.oz-fc-options .text{
+	text-indent:2px;
+	background-color: blue;
+}

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>日志控制台测试</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../../ozBase/themes/default/oz-common.css" />
+	<link rel="stylesheet" type="text/css" href="../../ozBase/themes/default/oz-log.css" />
+</head>
+<body style="padding: 20px; overflow: auto;">
+<h1 style="font-size: 18px;">控制台演示</h1>
+<br />
+<p>演示如何生成控制台日志信息，API文档参考 <a
+	href="../../docs/api/log/log.html">ozlog API</a></p>
+<br/>注：按<a	href="#" onclick="ozlog.toggle();">Ctrl+Home</a>键切换控制台的显示<br/>
+每隔100毫秒添加一条debug日志，共添加4条！<input id="btnDebug" type="button" value="开始"/><br/>
+每隔100毫秒添加一条profile日志，共添加4条！<input id="btnProfile" type="button" value="开始"/><br/>
+<br />
+</body>
+</html>
+<script type="text/javascript" src="../../ozBase/jquery-1.4.2.js"></script>
+
+<!-- jquery.ui的js也可以不引用，少了拖动控制台的功能而已 -->
+<script type="text/javascript" src="../../ozBase/jqueryui/plugins/jquery.ui.core.js"></script>
+<script type="text/javascript" src="../../ozBase/jqueryui/plugins/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="../../ozBase/jqueryui/plugins/jquery.ui.mouse.js"></script>
+<script type="text/javascript" src="../../ozBase/jqueryui/plugins/jquery.ui.draggable.js"></script>
+
+<script type="text/javascript" src="../../ozBase/plugins/oz.core.js"></script>
+<script type="text/javascript" src="../../ozBase/plugins/oz.log.js"></script>
+<script type="text/javascript" src="log.js"></script>

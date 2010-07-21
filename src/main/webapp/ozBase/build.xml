@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="oz-base" basedir="." default="build">	
+	<property name="src.dir" value="${basedir}"/>
+	<property name="build.dir" value="${src.dir}"/>
+	<property name="force" value="true"/>
+	<property name="fixlastline" value="true"/>
+	
+	<!-- 清空已发布的js、css文件 -->
+	<target name="clean">
+  		<antcall target="cleanJS"></antcall>
+  		<antcall target="cleanCSS"></antcall>
+	</target>
+	<target name="cleanJS">
+  		<delete>
+  			<fileset dir="${build.dir}">
+  				<include name="js/**/*.js"/>
+  			</fileset>
+  		</delete>
+	</target>
+	<target name="cleanCSS">
+  		<delete dir="${build.dir}/css">
+  			<fileset>
+  				<include name="**/*.css"/>
+  			</fileset>
+  		</delete>
+	</target>
+	
+	<!-- 打包合并发布js、css文件  -->
+	<target name="build">
+  		<!--<antcall target="buildJS"></antcall>-->
+  		<antcall target="buildCSS(default)"></antcall>
+	</target>
+	
+	<!-- 发布js -->
+	<target name="buildJS">
+		<mkdir dir="${build.dir}/js"/>
+  		<antcall target="buildJS-core"></antcall>
+  		<antcall target="buildJS-form"></antcall>
+  		<antcall target="buildJS-formWithTabs"></antcall>
+  		<antcall target="buildJS-view"></antcall>
+  		<antcall target="buildJS-treeView"></antcall>
+  		<antcall target="buildJS-mainPage"></antcall>
+		<antcall target="build-KE"></antcall>
+  		<antcall target="buildJS-copy"></antcall>
+	</target>
+	
+	<target name="buildJS-core">
+		<concat destfile="${build.dir}/js/oz-core.js" encoding="utf-8" fixlastline="${fixlastline}" force="${force}" >
+			<fileset file="${src.dir}/js/egd.js" />
+			<fileset file="${src.dir}/js/egd.ajax.js" />
+			<fileset file="${src.dir}/js/egd.browser.js" />
+			<fileset file="${src.dir}/js/egd.json.js" />
+			<fileset file="${src.dir}/js/egd.jquery.js" />
+			<fileset file="${src.dir}/js/egd.select.js" />
+			<fileset file="${src.dir}/js/egd.searchUtils.js" />
+			<fileset file="${src.dir}/js/egd.formValidate.js" />
+			
+			<fileset file="${src.dir}/js/extend/Number.js" />
+			<fileset file="${src.dir}/js/extend/Function.js" />
+			<fileset file="${src.dir}/js/extend/String.js" />
+			<fileset file="${src.dir}/js/extend/String.process(trimPath-template).js" />
+			
+			<fileset file="${src.dir}/js/egd.mark.js" />
+			<fileset file="${src.dir}/js/egd.moveFrame.js" />
+			<fileset file="${src.dir}/js/egd.task.js" />
+			<fileset file="${src.dir}/js/egd.parentAdapter.js" />
+		</concat>
+	</target>
+	<target name="buildJS-form" depends="buildJS-core">
+		<concat destfile="${build.dir}/js/oz-form.js" encoding="utf-8" fixlastline="${fixlastline}" force="${force}">
+			<fileset file="${build.dir}/js/oz-core.js" />
+			<fileset file="${src.dir}/ui/toolbar/toolbar.js" />
+		</concat>
+	</target>
+	<target name="buildJS-formWithTabs" depends="buildJS-form">
+		<concat destfile="${build.dir}/js/oz-formWithTabs.js" encoding="utf-8" fixlastline="${fixlastline}" force="${force}">
+			<fileset file="${build.dir}/js/oz-form.js" />
+			<fileset file="${src.dir}/js/egd.base.js" />
+			<fileset file="${src.dir}/ui/tabPanel/tabPanel.js" />
+		</concat>
+	</target>
+	<target name="buildJS-view" depends="buildJS-core">
+		<concat destfile="${build.dir}/js/oz-view.js" encoding="utf-8" fixlastline="${fixlastline}" force="${force}">
+			<fileset file="${build.dir}/js/oz-core.js" />
+			<fileset file="${src.dir}/ui/toolbar/toolbar.js" />
+			<fileset file="${src.dir}/ui/grid/grid.js" />
+		</concat>
+	</target>
+	<target name="buildJS-treeView" depends="buildJS-view">
+		<concat destfile="${build.dir}/js/oz-treeView.js" encoding="utf-8" fixlastline="${fixlastline}" force="${force}">
+			<fileset file="${build.dir}/js/oz-view.js" />
+			<fileset file="${src.dir}/js/egd.base.js" />
+			<fileset file="${src.dir}/ui/tree/tree.js" />
+		</concat>
+	</target>
+	<target name="buildJS-mainPage" depends="buildJS-core">
+		<concat destfile="${build.dir}/js/oz-mainPage.js" encoding="utf-8" fixlastline="${fixlastline}" force="${force}">
+			<fileset file="${build.dir}/js/oz-core.js" />
+			<fileset file="${src.dir}/js/egd.base.js" />
+			<fileset file="${src.dir}/ui/tabPanel/tabPanel.js" />
+			<fileset file="${src.dir}/ui/layout/layout.js" />
+			<fileset file="${src.dir}/ui/log/log.js" />
+			<fileset file="${src.dir}/ui/datePicker/date.js" />
+			<fileset file="${src.dir}/ui/datePicker/datePicker.js" />
+			<fileset file="${src.dir}/ui/toolbar/toolbar.js" />
+			<fileset file="${src.dir}/ui/window/window.js" />
+			<fileset file="${src.dir}/ui/msg/msg.js" />
+			<fileset file="${src.dir}/ui/tree/tree.js" />
+			<fileset file="${src.dir}/js/egd.mainPageFunctions.js" />
+		</concat>
+	</target>
+	<target name="buildJS-copy">
+		<copy todir="${build.dir}/js" >
+			<fileset dir="${src.dir}/js">
+			    <include name="jquery.js"/>
+			    <include name="jqueryPlugins/*.js"/>
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}/ui" >
+			<fileset dir="${src.dir}/ui">
+			    <include name="**/*.js"/>
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}/js/tpl" >
+			<fileset dir="${src.dir}/js/tpl">
+			    <include name="*.js"/>
+			</fileset>
+		</copy>
+		<copy file="${src.dir}/js/egd.base.js" tofile="${build.dir}/js/oz-base.js" />
+		<copy file="${src.dir}/js/egd.linkSelect.js" tofile="${build.dir}/js/oz-linkSelect.js" />
+	</target>
+	<!--编译富文本编辑器-->
+	<target name="build-KE">
+		<copy todir="${build.dir}/ui/kindediter" >
+			<fileset dir="${src.dir}/ui/kindediter">
+			    <include name="**/*.*"/>
+			    <exclude name="**/*.svn"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<!-- 发布css -->
+	<target name="buildCSS(default)">
+  		<antcall target="buildCSS(default)-form"></antcall>
+		<!--
+		<mkdir dir="${build.dir}/css/default"/>
+  		<antcall target="buildCSS(default)-all"></antcall>
+  		<antcall target="buildCSS(default)-formWithTabs"></antcall>
+  		<antcall target="buildCSS(default)-view"></antcall>
+  		<antcall target="buildCSS(default)-treeView"></antcall>
+  		<antcall target="buildCSS(default)-mainPage"></antcall>
+  		<antcall target="buildCSS(default)-copy"></antcall>
+  		-->
+	</target>
+	<target name="buildCSS(default)-core">
+		<concat destfile="${build.dir}/themes/default/oz-core.css" encoding="utf-8" fixlastline="${fixlastline}" force="${force}" >
+			<fileset file="${src.dir}/themes/default/oz-common.css" />
+			<fileset file="${src.dir}/themes/default/oz-log.css" />
+		</concat>
+	</target>
+	<target name="buildCSS(default)-form" depends="buildCSS(default)-core">
+		<concat destfile="${build.dir}/themes/default/oz-form.css" encoding="utf-8" fixlastline="${fixlastline}" force="${force}" >
+			<fileset file="${build.dir}/themes/default/oz-core.css" />
+			<fileset file="${src.dir}/themes/default/oz-page.css" />
+			<fileset file="${src.dir}/themes/default/oz-toolbar.css" />
+			<fileset file="${src.dir}/themes/default/oz-toolbar-button.css" />
+			<fileset file="${src.dir}/themes/default/oz-toolbar-button-search.css" />
+		</concat>
+	</target>
+	<target name="buildCSS(default)-formWithTabs" depends="buildCSS(default)-form">
+		<concat destfile="${build.dir}/themes/default/oz-formWithTabs.css" encoding="utf-8" fixlastline="${fixlastline}" force="${force}" >
+			<fileset file="${build.dir}/themes/default/oz-form.css" />
+			<fileset file="${src.dir}/themes/default/tabPanel.css" />
+		</concat>
+	</target>
+	<target name="buildCSS(default)-view" depends="buildCSS(default)-core">
+		<concat destfile="${build.dir}/themes/default/oz-view.css" encoding="utf-8" fixlastline="${fixlastline}" force="${force}" >
+			<fileset file="${build.dir}/themes/default/oz-core.css" />
+			<fileset file="${src.dir}/themes/default/page.css" />
+			<fileset file="${src.dir}/themes/default/toolbar.css" />
+			<fileset file="${src.dir}/themes/default/toolbar-button.css" />
+			<fileset file="${src.dir}/themes/default/formControl-search.css" />
+			<fileset file="${src.dir}/themes/default/grid.css" />
+		</concat>
+	</target>
+	<target name="buildCSS(default)-treeView" depends="buildCSS(default)-view">
+		<concat destfile="${build.dir}/themes/default/oz-treeView.css" encoding="utf-8" fixlastline="${fixlastline}" force="${force}" >
+			<fileset file="${build.dir}/themes/default/oz-view.css" />
+			<fileset file="${src.dir}/themes/default/tree.css" />
+		</concat>
+	</target>
+	<target name="buildCSS(default)-all" depends="buildCSS(default)-core">
+		<concat destfile="${build.dir}/themes/default/oz-all.css" encoding="utf-8" fixlastline="${fixlastline}" force="${force}" >
+			<fileset file="${build.dir}/themes/default/oz-core.css" />
+			<fileset file="${src.dir}/themes/default/page.css" />
+			<fileset file="${src.dir}/themes/default/tabPanel.css" />
+			<fileset file="${src.dir}/themes/default/layout.css" />
+			<fileset file="${src.dir}/themes/default/toolbar.css" />
+			<fileset file="${src.dir}/themes/default/toolbar-button.css" />
+			<fileset file="${src.dir}/themes/default/formControl-search.css" />
+			<fileset file="${src.dir}/themes/default/toolbar-dialog.css" />
+			<fileset file="${src.dir}/themes/default/grid.css" />
+			<fileset file="${src.dir}/themes/default/tree.css" />
+			<fileset file="${src.dir}/themes/default/window.css" />
+			<fileset file="${src.dir}/themes/default/msg.css" />
+			<fileset file="${src.dir}/themes/default/nav.css" />
+			<fileset file="${src.dir}/themes/default/log.css" />
+		</concat>
+	</target>
+	<target name="buildCSS(default)-mainPage" depends="buildCSS(default)-core">
+		<concat destfile="${build.dir}/themes/default/oz-mainPage.css" encoding="utf-8" fixlastline="${fixlastline}" force="${force}">
+			<fileset file="${build.dir}/themes/default/oz-core.css" />
+			<fileset file="${src.dir}/themes/default/toolbar.css" />
+			<fileset file="${src.dir}/themes/default/toolbar-button.css" />
+			<fileset file="${src.dir}/themes/default/formControl-search.css" />
+			<fileset file="${src.dir}/themes/default/toolbar-dialog.css" />
+			<fileset file="${src.dir}/themes/default/tabPanel.css" />
+			<fileset file="${src.dir}/themes/default/layout.css" />
+			<fileset file="${src.dir}/themes/default/tree.css" />
+			<fileset file="${src.dir}/themes/default/window.css" />
+			<fileset file="${src.dir}/themes/default/msg.css" />
+			<fileset file="${src.dir}/themes/default/datePicker.css" />
+			<fileset file="${src.dir}/themes/default/log.css" />
+		</concat>
+	</target>
+	<target name="buildCSS(default)-copy">
+		<copy todir="${build.dir}/css" >
+			<fileset dir="${src.dir}/css">
+			    <include name="**/*.css"/>
+			</fileset>
+		</copy>
+	</target>
+	<property name="debugPath" value="../../develop/platform4j/oz-platform"/>
+	<target name="debug" depends="build">
+		<copy todir="${debugPath}/web/egd/core/js" >
+			<fileset dir="${build.dir}/js">
+			    <include name="**/*.js"/>
+			</fileset>
+		</copy>
+		<copy todir="${debugPath}/web/egd/core/css/default" >
+			<fileset dir="${build.dir}/css/default">
+			    <include name="*.css"/>
+			</fileset>
+		</copy>
+		<copy todir="${debugPath}/web/egd/core/ui" >
+			<fileset dir="${build.dir}/ui">
+			    <include name="**/*.js"/>
+			</fileset>
+		</copy>
+	</target>
+</project>

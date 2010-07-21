@@ -1,0 +1,1309 @@
+/*
+ * 全局样式控制
+ * 功能：所有页面的通用样式设置：字体及间隔
+ * 修改：dragon 2007-07-01 
+ *		1)将全局字体控制配置在样式*{...}中
+ *		2)在样式*{...}中必须设置margin: 0px;padding: 0px;否则IE中form标签和表单创建信息之间会出现间隔
+ *		3)为了使Opera的input标签更自然点添加了样式input{...}
+ */
+
+/* 全局配置----字体及间隔*/
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{
+	margin:0;
+	padding:0;
+	font-size:12px;
+	font-family:"宋体","Tahoma","verdana","arial","helvetica","sans-serif";
+}
+img,body,html{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var{
+	font-style:normal;
+	font-weight:normal;
+}
+ol,ul{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+q:before,q:after{content:'';}
+input{
+	/*height:20px;*/
+	padding:2px 0px 0px 2px
+}
+select{
+	font-size:12px;
+	font-family:"Tahoma","verdana","arial","helvetica","sans-serif";
+}
+body{
+	color: #000000; 
+	overflow: auto;
+	text-decoration: none;
+	
+	/* 设置IE的滚动条*/
+	scrollbar-shadow-color: #dee3e7; 
+	scrollbar-3dlight-color: #d1d7dc;
+	scrollbar-arrow-color: #006699;
+	scrollbar-track-color: #efefef;
+	scrollbar-darkshadow-color: #98aab1;
+	scrollbar-face-color: #dee3e7;
+	background-color:#F8FAFD;
+}
+
+a:link { text-decoration:none; COLOR:#333333; }
+a:visited { text-decoration:none; COLOR:#000000; }
+a:active { text-decoration:none; COLOR:#000000; }
+a:hover { text-decoration:none; COLOR:#7D7B7B; }
+
+.oz-hidden{
+	display: none;
+}
+/* body样式 */
+.oz-body{
+	overflow: hidden;
+	background-color: #DEEBF4;/*#ECE9D8*/;
+}
+/* 对话框的body样式 */
+.oz-body-dlg{
+	overflow: hidden;
+	background-color: #DFE7EF;
+}
+.oz-body-dlg fieldset{
+	padding:5px;
+}
+/*数字字体*/
+.GeorgiaFont{
+	font-family:Georgia, Times New Roman, Times, serif;
+}
+.DivClear{
+	clear:both;
+}
+
+/* 
+ * oz日志WebUI控件
+ * 
+ * 作者：dragon 2010-07-21 email:rongjih@163.com
+ * 版本：1.0
+*/
+ 
+/**容器样式*/
+.oz-log {
+	position: absolute;
+	border: 0px solid green;
+	bottom: 10px;
+	left: 10px;
+	text-align: left;
+	font-size: 12px;
+	
+	-moz-opacity:0.9;
+	opacity:.90;
+	filter:alpha(opacity=90);
+	-moz-user-select:none;
+	-khtml-user-select:none;
+	display: none;
+	width:auto;
+	_width:318px;
+}
+
+/**标题样式*/
+.oz-log .header{
+	background-color: #000000;
+}
+.oz-log .header,.oz-log .header div{
+	height: 22px;
+}
+.oz-log .header span{
+	width: 16px;
+	height: 16px;
+	margin-top:0px;
+	margin-left:3px;
+	margin-right:3px;
+	background:transparent url(images/log_icons.png) no-repeat scroll 0 0;
+	_background-image:url(images/log_icons_ie6.png);/*fix IE6*/
+}
+.oz-log .header .leftSide,.oz-log .header .rightSide{
+	float: left;
+	width: 9px;
+	background:transparent url(images/log_bg.png) repeat-y scroll 0 0;
+}
+.oz-log .header .leftSide{
+	background-position: -18px 0;
+}
+.oz-log .header .rightSide{
+	background-position: -21px 0;
+}
+.oz-log .header .left{
+	float:left;
+	width: 150px;
+}
+.oz-log .header .left span{
+	float:left;
+}
+.oz-log .header .right{
+	float:left;
+	width: 150px;
+}
+.oz-log .header .right span{
+	float:right;
+}
+.oz-log .header span.error {
+	background-position: 0px 0px;
+}
+.oz-log .header span.errorDisabled {
+	background-position: -16px 0px;
+}
+.oz-log .header span.warn {
+	background-position: 0px -16px;
+}
+.oz-log .header span.warnDisabled {
+	background-position: -16px -16px;
+}
+.oz-log .header span.info {
+	background-position: 0px -32px;
+}
+.oz-log .header span.infoDisabled {
+	background-position: -16px -32px;
+}
+.oz-log .header span.debug {
+	background-position: 0px -48px;
+}
+.oz-log .header span.debugDisabled {
+	background-position: -16px -48px;
+}
+.oz-log .header span.profile {
+	background-position: 0px -64px;
+}
+.oz-log .header span.profileDisabled {
+	background-position: -16px -64px;
+}
+.oz-log .header span.close {
+	background-position: 0px -80px;
+}
+.oz-log .header span.clear {
+	background-position: -16px -80px;
+}
+.oz-log .header span.desc {
+	background-position: 0px -96px;
+}
+.oz-log .header span.descDisabled {
+	background-position: -16px -96px;
+}
+
+/**内容样式*/
+.oz-log .content{
+	background-color: #000000;
+}
+.oz-log .content,.oz-log .content div{
+	height: 200px;
+}
+.oz-log .content .leftSide,.oz-log .content .rightSide{
+	float: left;
+	width: 9px;
+	background:transparent url(images/log_bg.png) repeat-y scroll 0 0;
+}
+.oz-log .content .leftSide{
+	background-position: -18px 0px;
+}
+.oz-log .content .rightSide{
+	background-position: -21px 0px;
+}
+.oz-log .content .center{
+	float: left;
+	width: 300px;
+	overflow: auto;
+}
+.oz-log .content ol{
+	height: 100%;
+	overflow: auto;
+	width: 100%;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.oz-log .content ol li{
+	padding: 1px 2px 1px 23px;
+	border-bottom: 1px solid #333333;
+	color: #000000;
+	margin: 0;
+	line-height: 20px;
+	vertical-align: middle;
+	color: #CCC;
+}
+.oz-log .content ol li span{
+	width: 16px;
+	height: 16px;
+	background:transparent url(images/log_icons.png) no-repeat scroll 0 0;
+	_background-image:url(images/log_icons_ie6.png);/*fix IE6*/
+	border: 0;
+	display: block;
+	float: left;
+	margin-left: -20px;
+	_margin-left: -10px;/*fix IE6*/
+	margin-top: 2px;
+	display: block;
+}
+
+.oz-log .content ol li.error span {
+	background-position: 0 0;
+}
+
+.oz-log .content ol li.warn span {
+	background-position: 0 -16px;
+}
+
+.oz-log .content ol li.info span {
+	background-position: 0 -32px;
+}
+
+.oz-log .content ol li.debug span {
+	background-position: 0 -48px;
+}
+
+.oz-log .content ol li.profile span {
+	background-position: 0 -64px;
+}
+
+.oz-log .content ol li.profile {
+	font-style: italic;
+	color: #DDD;
+}
+
+/**顶部样式*/
+.oz-log .top,.oz-log .top div{
+	height: 9px;
+	overflow: hidden;
+}
+.oz-log .top .leftSide,.oz-log .top .rightSide{
+	float: left;
+	width: 9px;
+	background:transparent url(images/log_bg.png) no-repeat scroll 0 0;
+}
+.oz-log .top .leftSide{
+	background-position: 0 0;
+}
+.oz-log .top .rightSide{
+	background-position: -9px 0px;
+}
+.oz-log .top .center{
+	float: left;
+	width: 300px;
+	background:transparent url(images/log_bg1.png) repeat-x scroll 0 0;
+}
+
+/**底部样式*/
+.oz-log .footer,.oz-log .footer div{
+	height: 9px;
+	overflow: hidden;
+}
+.oz-log .footer .leftSide,.oz-log .footer .rightSide{
+	float: left;
+	width: 9px;
+	background:transparent url(images/log_bg.png) no-repeat scroll 0 0;
+}
+.oz-log .footer .leftSide{
+	background-position: 0 -9px;
+}
+.oz-log .footer .rightSide{
+	background-position: -9px -9px;
+}
+.oz-log .footer .center{
+	float: left;
+	width: 300px;
+	background:transparent url(images/log_bg1.png) repeat-x scroll 0 -4px;
+}
+
+/**
+ * OZ页面布局样式设置(整体布局、工具条定位)
+ * 作者：dragon 2010-07-21
+ */
+
+/** 页面布局表格 */
+.oz-page{width:auto;}
+.oz-page-table{
+	margin:0;
+	padding:0;
+	table-layout:auto;
+	border:0;
+	width:100%;
+	height:100%;
+}
+
+/**** 工具条样式配置--开始 ****/
+/* 放置工具条的表格行 */
+.oz-page-tb-tr{
+	height: 30px;
+	overflow:hidden;
+}
+
+/* 放置工具条的单元格 */
+.oz-page-tb-td{
+	border: 0px solid black;
+	text-align: left;
+	vertical-align: top;
+	overflow:hidden;
+}
+
+/* 放置工具条的div容器 */
+.oz-page-content-tbContainer{
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 30px;
+	background-repeat: repeat-x;
+	background-image:url(images/page/toolbar_bg.gif);
+	margin: 0px;
+	padding: 0px;		/*必须为0,否则IE6出现水平滚动条*/
+	position: fixed;	/*加上这句对IE6无效,而IE7,FF则可固定工具条*/
+	z-index: 2;			/*与div.headTitle对应(在文件Form.css),避免上下滚动内容时div.headTitle遮住工具条*/
+	border:0px solid blue;
+	overflow:hidden;
+}
+/**** 工具条样式配置--结束 ****/
+
+/**** 内容区样式配置--开始 ****/
+/* 放置页面内容的表格行 */
+.oz-page-content-tr{
+	border: 0px solid blue;
+	vertical-align:middle;
+	overflow:hidden;
+}
+
+/* 放置页面内容的单元格 */
+.oz-page-content-td{
+	border: 0px solid blue;
+	text-align: left;
+	vertical-align: top;
+	overflow: hidden;
+}
+
+/* 内容区放置grid的div容器 */
+.oz-page-content-gridContainer{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	text-align:left;
+	vertical-align: top;
+	overflow: auto;
+	display:block;
+}
+
+/* 内容区放置grid的单元格(带树时使用) */
+.oz-page-content-grid-td{
+	margin: 0px;
+	padding: 0px;
+	border: 0px solid black;
+	text-align:left;
+	vertical-align: top;
+	/*display:block;*/
+}
+
+/* 内容区放置tree的单元格(带树时使用) */
+.oz-page-content-tree-td{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	text-align:left;
+	vertical-align:top;
+	width: 180px;
+}
+
+/* tree和grid间的分隔条(带树时使用) */
+.oz-page-content-seperator-td{
+	margin: 0px;
+	padding: 0px;
+	width: 5px;
+	border: 0;
+	background-repeat: repeat-y;
+	background-image: url(images/page/seperator.gif);
+	/*background-color:red;*/
+	font-size:1px;
+}
+
+/* 内容区放置tree的div容器(带树时使用) */
+.oz-page-content-treeContainer{
+	background-color:#F3F7FA;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+	border: 0px solid black;
+	text-align:left;
+	overflow: auto;
+}
+/**** 内容区样式配置--结束 ****/
+
+/**** 表单样式配置--开始 ****/
+/* 包含整个表单所有信息的表格 */
+.oz-page-formTable{
+	margin: 0px 0px 0px 5px;
+	padding: 0px;
+	width: 600px;
+	height: 100%;
+	vertical-align: top;
+	border-color: #76ABD3;
+	border-style: solid;
+	border-width:1px 0px 0px 0px;
+}
+.oz-page-formContainer{
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	width: 600px;
+	height: 100%;
+	border: 0px solid blue;
+	vertical-align: top;
+	/*background-color:#F2F2F3;*/
+	overflow:auto;
+}
+/* 大标题的表格行 */
+.oz-page-title-tr{
+	margin: 0px;
+	padding: 0px;
+	height: 50px;
+	border: 0px solid black;
+	vertical-align: top;
+}
+/* 大标题的单元格 */
+.oz-page-title-td{
+	border: 0px solid black;
+	text-align:left;
+	vertical-align: top;
+}
+
+/* 大标题的div容器 */
+.oz-page-titleContainer{
+	margin: 5px;
+	padding: 5px 0px 0px 2px;
+	width: 100%;
+	height: 30px;
+	border: 0px solid black;
+	text-align:left;
+	overflow: hidden;
+	font-size: 18px;
+	font-weight:bold;
+	font-style: italic;
+	color:#224D7E;
+	border-bottom:1px solid #F2F2F2;
+}
+/* 大标题的单元格 */
+.oz-page-form-td{
+	border: 0px solid black;
+	text-align:left;
+	vertical-align: top;
+	padding: 0px 0px 0px 0px;
+}
+/* 表单form标签 */
+.oz-form{
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+	border:0px solid black;
+}
+
+/* 表单描述性信息的容器 */
+.oz-form-headInfo{
+	width: 100%;
+	height: 27px;
+	line-height: 27px;
+	border: 0px solid blue;
+	padding: 0px;
+	overflow: hidden;
+	background-repeat: repeat-x;
+	background-image: url(images/page/form_headInfo_bg.jpg);
+	border-color: #76ABD3;
+	border-style: solid;
+	border-width:0px 1px 0px 1px;
+}
+
+/* 表单左边的描述性信息 */
+.oz-form-headInfo .oz-form-headInfo-left{
+	height: 27px;
+	line-height: 27px;
+	text-align: left;
+	border:0px solid black;
+	float:left;
+	padding-left:12px;
+	background-repeat: no-repeat;
+	background-image: url(images/page/form_headInfo_left_bg.jpg);
+	font-weight:bold;
+}
+
+/* 表单右边的描述性信息(通常为创建信息) */
+.oz-form-headInfo .oz-form-headInfo-right{
+	height: 27px;
+	line-height: 27px;
+	text-align: right;
+	border:0px solid black;
+	float:right;
+	padding-right:8px;
+}
+
+/* 包含表单属性域的table */
+.oz-form-fieldsTable{
+	width: 100%;
+	background-color:#F4F6F9;
+	border-color: #76ABD3;
+	border-style: solid;
+	border-width:0px 1px 1px 1px;
+}
+.oz-form-emptyTR{
+	height: 2px;
+	line-height:2px;
+}
+
+/* 表单内部的分隔条 */
+.oz-form-separator{
+	width: 100%;
+	height: 8px;
+	line-height:5px;
+	border:0px solid blue;
+}
+/* 表单内部页签的div容器 */
+.oz-form-tabsContainer {
+	width: 100%;
+	height: 200px;
+	border:1px solid black;
+	text-align: left;
+}
+
+.oz-form-label{
+	color:#195775;
+	text-align: right;
+	vertical-align: middle;
+	padding-right: 2px;
+}
+
+.oz-form-topLabel{
+	color:#195775;
+	text-align: right;
+	vertical-align: top;
+	padding-right: 2px;
+	padding-top: 2px;
+}
+
+.oz-property {
+	vertical-align: top;
+}
+
+.oz-property input {
+	width: 100%;
+	height:20px;
+}
+
+.oz-property select {
+	width: 100%;
+}
+
+.oz-property textarea {
+	width: 100%;
+	padding-left: 2px;
+	padding-top: 2px;
+	text-align: left;
+	overflow: auto;
+}
+
+.oz-form-field{
+	background: #FFFFFF;
+	border-bottom: 1px solid #B0D7F2;
+	border-right: 1px solid #B0D7F2;
+	border-left: 1px solid #2A72A3;
+	border-top:1px solid #2A72A3; 
+	color:#000066;
+	text-decoration:none;
+}
+
+.oz-form-zdField{
+	background: #DCDCDC;
+	border-bottom: 1px solid #D4D0C8;
+	border-right: 1px solid #D4D0C8;
+	border-left: 1px solid #808080;
+	border-top:1px solid #808080; 
+	color:#000066;
+	text-decoration:none;
+}
+
+.oz-form-btField{
+	background: #E8F3F9;
+	border-bottom: 1px solid #B0D7F2;
+	border-right: 1px solid #B0D7F2;
+	border-left: 1px solid #3881B2;
+	border-top:1px solid #3881B2; 
+	color:#000066;
+	text-decoration:none;
+}
+
+/**** 表单样式配置--结束 ****/
+/*定义表单水平对齐状态,默认左对齐,如果改为中间或右对齐,则.oz-form-title-warp也要修改,见说明.*/
+.oz-form-align{
+	text-align:left; /*左对齐(left),为中间(center),右对齐(right)*/
+}
+/*表单整个宽度*/
+.oz-form-pageWidth{
+	width:720px; /*默认720px,适用两列信息*/
+}
+.oz-form-tabPanel{
+	width:720px; /*默认720px,适用两列信息*/
+	margin-top:5px;
+	margin-left:6px;
+	_width:732px; /*解决IE的宽度bug*/
+}
+.oz-form-tabWidth{
+	width:730px; /*默认720px,适用两列信息*/
+}
+/*表单标题背景*/
+.oz-form-title-warp{
+	/*默认左对齐背景*/
+	background-image:url(images/page/title-warpBg.jpg); 
+	/*中间或右对齐背景
+	background-image:url(images/page/title-warpBgCR.jpg); */
+	background-repeat:no-repeat;
+	height:46px; 
+	background-position: left bottom;
+	vertical-align:bottom;
+}
+/*标题文字*/
+.oz-page-title-text{
+	margin-top:10px;
+	font-size:16px; 
+	font-weight:bold; 
+	color:#1D436D; 
+	text-indent:10px; 
+	vertical-align:bottom;
+}
+.oz-page-subtitle-text{
+	font-size:12px;
+	font-weight:bold;	 
+	text-indent:10px; 
+	vertical-align:bottom;
+}
+/*标题表单右边信息文字宽度*/
+.oz-page-title-infoWidth{
+	margin-top:20px;
+	width:420px;
+	vertical-align:bottom; 
+	text-align:right;
+}
+.oz-page-form-wrap{
+	margin:6px;
+	clear:both; 
+}
+/*解决Form里面的textarea文字自动换行*/
+.oz-page-form-wrap table{table-layout:fixed;}
+
+/*表单边颜色和背景颜色 */
+.oz-page-form-tableBorder{
+	border:1px solid #76ABD3; 
+	background-color:#FFFFFF;
+	padding:5px; 
+	clear:both; 
+	
+}
+
+
+/*视图整个宽度***********************************/
+.oz-view-pageWidth{
+	width:100%; /*默认100%*/
+}
+/*视图标题背景*/
+.oz-view-title-warp{
+	background-image:url(images/page/title-warpBg.jpg); 
+	background-repeat:no-repeat; 
+	height:30px; 
+	background-position: left top;
+	vertical-align:bottom;
+}
+.oz-view-titleBg{
+	border-bottom:1px solid #C3D599;;
+}
+
+/*简易滚动样式***************************/
+.oz-page-overflow{
+	position:absolute;
+	width:100%;
+	height:100%;
+	overflow: auto;
+}
+.oz-tab{
+	overflow: auto;
+} 
+/**设置Tab Iframe*/
+.oz-tab-iframe{
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+} 
+.oz-page-tab_IW{
+/*.oz-form-pageWidth宽度为720*/
+	width: 98%;
+} 
+/*卡项中的标题背景*/
+.oz-page-tabTitleTopBg{
+	background-image:url(images/page/title_topbg.gif); 
+	border:1px solid #ADD5EE; 
+	height:18px; 
+	line-height:18px; 
+	text-indent:5px; 
+	font-weight:bold; 
+	color:#006699;
+}
+
+.oz-form-tab-content-header{
+	height:24px;
+	padding-left: 8px;	
+	background-color:#D0D0D0;
+	font-weight:bold;
+}
+/*隔开样式,有4个方向*/
+.oz-page_partitionTop{
+	margin-top:5px;
+}
+.oz-page_partitionRight{
+	margin-right:5px;
+}
+.oz-page_partitionBottom{
+	margin-bottom:5px;
+}
+.oz-page_partitionLeft{
+	margin-left:5px;
+}
+
+/*空白按钮*/
+.form-button-default{
+	background-image:url(images/page/button-default.gif);
+	border:0px;
+	width:62px; 
+	height:21px;
+}
+/*按钮背景*/
+.oz-page-button-tabbg1{
+	border:0px;
+	background-image:url(images/page/button-tabbg1.gif); 
+	width:56px; 
+	height:20px; 
+	margin-right:4px;
+	cursor:pointer;
+}
+.oz-page-button-tabbg2{
+	border:0px;
+	background-image:url(images/page/button-tabbg2.gif); 
+	width:68px; 
+	height:20px;
+	margin-right:4px;
+	cursor:pointer;
+}
+.oz-page-button-tabbg3{
+	border:0px;
+	background-image:url(images/page/button-tabbg3.gif);
+	width:80px;
+	height:20px; 
+	margin-right:4px;
+	cursor:pointer;
+}
+.oz-page-button-tabbg4{
+	border:0px;
+	background-image:url(images/page/button-tabbg4.gif);
+	width:135px;
+	height:20px; 
+	margin-right:4px;
+	cursor:pointer;
+}
+.oz-page-button2-tabbg1{
+	border:0px;
+	background-image:url(images/page/button2-tabbg1.gif); 
+	width:56px; 
+	height:20px; 
+	margin-right:4px;
+	cursor:pointer;
+}
+.oz-page-button2-tabbg2{
+	border:0px;
+	background-image:url(images/page/button2-tabbg2.gif); 
+	width:68px; 
+	height:20px;
+	margin-right:4px;
+	cursor:pointer;
+}
+.oz-page-button2-tabbg3{
+	border:0px;
+	background-image:url(images/page/button2-tabbg3.gif); 
+	width:80px;
+	height:20px; 
+	margin-right:4px;
+	cursor:pointer;
+}
+/*弹出窗口树的边框样式*/
+.form-dlg-treeDiv{
+	width:100%; height:100%;
+	background-color:#FFFFFF; overflow:auto; border:1px solid #c3daf9;
+}
+/*对话框中的添加、全添加、删除等...*/
+.dlg_add{
+	background-image:url(images/select/select_add.gif); width:59px; height:19px; border:0px; cursor:pointer;
+}
+.dlg_all_add{
+	background-image:url(images/select/select_all_add.gif); width:59px; height:19px; border:0px;cursor:pointer;
+}
+.dlg_del{
+	background-image:url(images/select/select_del.gif); width:59px; height:19px; border:0px;cursor:pointer;
+}
+.dlg_all_del{
+	background-image:url(images/select/select_all_del.gif); width:59px; height:19px; border:0px;cursor:pointer;
+}
+/*换行*/
+.oz-view-hh{
+	word-wrap: break-word; 
+	word-break: break-all;
+	overflow: auto ;
+	overflow-x:hidden;
+}
+/* 用CSS解决PRE的换行问题 */
+.oz-view-pre {
+	white-space: pre-wrap;      /* css-3 */
+	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+	white-space: -pre-wrap;     /* Opera 4-6 */
+	white-space: -o-pre-wrap;   /* Opera 7 */
+	word-wrap: break-word;      /* Internet Explorer 5.5+ */
+}
+
+/*树中的视图边框和背景*/
+.oz-tree-wrap{
+	border-top:1px solid #7F9DB9;
+	border-right:1px solid #7F9DB9;
+	border-bottom:1px solid #7F9DB9;
+	border-left:1px solid #7F9DB9;
+	background-color:#F8FAFD;
+}
+/*视图中的搜索样式*/
+.oz-view-search-bg{
+	width:100%;
+	background-color:#F8FAFD;
+	background-image:url(images/page/egd-view-search-bg.png); 
+	border-bottom:1px solid #BAD1E0;
+	background-position:bottom;
+	background-repeat:repeat-x;
+}
+.oz-view-search-toolbarBg{
+	width:100%;
+	height:26px;
+	line-height:26px;
+	background-color:#EDEEEF;
+	border-bottom:1px solid #E0DEE0;
+}
+.search-startSearch{
+	margin-top:3px;
+	margin-left:6px;
+	margin-right:6px;
+	width:73px;
+	height:19px;
+	background-image:url(images/page/startSearch.gif);
+	background-repeat:no-repeat;
+	float:left; 
+	cursor:pointer;
+}
+.search-cleanCondition{
+	margin-top:3px;
+	margin-left:6px;
+	margin-right:6px;
+	width:73px;
+	height:19px;
+	background-image:url(images/page/cleanCondition.gif);
+	background-repeat:no-repeat; 
+	float:left; 
+	cursor:pointer;
+}
+/*日期+时间*/
+.oz-dateTimeField{
+  	background-repeat: no-repeat;
+  	background-image:url(images/calendar/dateTime.gif);
+  	cursor: pointer;
+	background-position: 99% center;
+	border:1px solid #74a6d5;
+}
+/*日期+时间+必填*/
+.oz-dateTimeBtField{
+  	background-repeat: no-repeat;
+  	background-image:url(images/calendar/dateTime.gif);
+  	cursor: pointer;
+	background-position: 99% center;
+	border:1px solid #74a6d5;
+}
+/*日期*/
+.oz-dateField{
+  	background-repeat: no-repeat;
+  	background-image:url(images/calendar/date.gif);
+  	cursor: pointer;
+	background-position: 99% center;
+	border:1px solid #74a6d5;
+}
+/*日期+必填*/
+.oz-dateBtField{
+  	background-repeat: no-repeat;
+  	background-image:url(images/calendar/date.gif);
+  	cursor: pointer;
+	background-position: 99% center;
+	border:1px solid #74a6d5;
+}
+/* 
+ * oz工具条样式
+ * 
+ * 作者：dragon 2010-07-21
+ * 版本：1.0
+ */
+.oz-tb {
+	background: #D0DEF0 url(images/toolbar-bg.gif) repeat-x scroll left top;
+	border-color: #A9BFD3;
+	border-style: solid;
+	border-width: 0 0 1px;
+	display: block;
+	padding: 4px;
+	height:22px;
+	_height:30px;
+	-moz-user-select:none;
+	-khtml-user-select:none;
+}
+.oz-toolbar-text-align-left{text-align:left;}
+.oz-toolbar-text-align-right{text-align:right;}
+.oz-toolbar-text-align-center{text-align:center;}
+.oz-tb .oz-btns-align-left{float:left;}
+.oz-tb .oz-btns-align-right{float:right;}
+.oz-tb .oz-btns-align-center{
+	margin-left:auto;
+	margin-right:auto;
+}
+.oz-tb .oz-btn {
+	height:21px;
+	overflow: hidden;
+}
+.oz-tb .oz-btn * {
+	cursor:default;
+	font-size: 12px;
+}
+.oz-tb .oz-btn div {
+	float:left;
+	height:21px;
+	line-height:21px;
+	vertical-align: middle;
+	overflow: hidden;
+}
+
+/* 按钮的常规状态 */
+.oz-tb .oz-btn .oz-btn-left {
+	background: transparent none no-repeat;
+	width:3px;
+}
+.oz-tb .oz-btn .oz-btn-right {
+	background: transparent none no-repeat;
+	width:3px;
+}
+.oz-tb .oz-btn .oz-btn-center {
+	background: transparent none no-repeat;
+}
+
+/* 按钮的鼠标悬停状态 */
+.oz-tb .oz-btn-over .oz-btn-left{
+	background: transparent url(images/toolbar-btn-sprite.gif) no-repeat scroll 0 0;
+	width:3px;
+}
+.oz-tb .oz-btn-over .oz-btn-right{
+	background: transparent url(images/toolbar-btn-sprite.gif) no-repeat scroll 0 -21px;
+	width:3px;
+}
+.oz-tb .oz-btn-over .oz-btn-center{
+	background: transparent url(images/toolbar-btn-sprite.gif) repeat-x scroll 0 -42px;
+}
+
+/* 按钮的鼠标按下状态 */
+.oz-tb .oz-btn-click .oz-btn-left{
+	background: transparent url(images/toolbar-btn-sprite.gif) no-repeat scroll 0 -63px;
+	width:3px;
+}
+.oz-tb .oz-btn-click .oz-btn-right{
+	background: transparent url(images/toolbar-btn-sprite.gif) no-repeat scroll 0 -84px;
+	width:3px;
+}
+.oz-tb .oz-btn-click .oz-btn-center{
+	background: transparent url(images/toolbar-btn-sprite.gif) repeat-x scroll 0 -105px;
+}
+
+/* 按钮的隐藏状态 */
+.oz-tb .oz-btn-hidden {
+	display:none;
+}
+
+/* 按钮的禁用状态 */
+.oz-tb .oz-btn-disabled {
+	color:gray;
+	opacity:0.6;
+}
+.oz-tb .oz-btn-disabled * {
+	color:gray;
+}
+.oz-tb .oz-btn-disabled .oz-btn-left{
+	background: transparent none no-repeat;
+	width:3px;
+}
+.oz-tb .oz-btn-disabled .oz-btn-right{
+	background: transparent none no-repeat;
+	width:3px;
+}
+.oz-tb .oz-btn-disabled .oz-btn-center{
+	background: transparent none no-repeat;
+}
+
+/* 分隔条 */
+.oz-tb .oz-btn-seperator {
+	background: transparent url(images/toolbar-btn-seperator.gif) no-repeat center center;
+	border:0;
+	cursor:default;
+	display:block;
+	font-size:1px;
+	height:16px;
+	line-height:16px;
+	margin:0 2px;
+	overflow:hidden;
+	width:4px;
+}
+
+/* 按钮显示的文本 */
+.oz-tb .oz-btn-center .oz-btn-text {
+	float:left;
+	border:0;
+	cursor:default;
+	display:block;
+	height:16px;
+	line-height:16px;
+	vertical-align:middle;
+	margin-top:2px;
+	padding-top:1px;
+	padding-left:2px;
+}
+
+/* 按钮显示的图片 */
+.oz-tb .oz-btn-center .oz-btn-icon {
+	float:left;
+	background-repeat: no-repeat;
+	background-position: center center;
+	border:0;
+	display:block;
+	height:16px;
+	line-height:16px;
+	width:16px;
+	margin-top:2px;
+}
+
+/* 菜单按钮显示的箭头 */
+.oz-tb .oz-btn-center .oz-btn-arrow {
+	float:left;
+	background:transparent url(images/toolbar-btn-arrow.gif) no-repeat;
+	border:0;
+	display:block;
+	height:16px;
+	line-height:16px;
+	width:11px;
+	margin-top:2px;
+}
+.oz-tb .oz-btn-center .oz-btn-arrow-menu {
+	background-position:right 1px;
+}
+.oz-tb .oz-btn-center .oz-btn-arrow-split {
+	background-position:right -49px;
+}
+
+/* 标签文本 */
+.oz-tb .oz-btn .oz-btn-info {
+	border:0;
+	display:block;
+	height:16px;
+	line-height:16px;
+	vertical-align:middle;
+	margin-top:2px;
+	padding-top:2px;
+	padding-left:2px;
+}
+
+/* 文本框 */
+.oz-tb .oz-btn .oz-btn-field {
+	background: #FFFFFF;
+	border-bottom: 1px solid #7F9DB9;
+	border-right: 1px solid #7F9DB9;
+	border-left: 1px solid #7F9DB9;
+	border-top:1px solid #7F9DB9; 
+	color:#000066;
+	text-decoration:none;
+	margin-top:1px;
+	padding:2px 0px 0px 2px;
+	height:16px;
+}
+
+/* 下拉框  */
+.oz-tb .oz-btn .oz-btn-select {
+	font-size: 12px;
+	width:auto;
+	margin-top:2px;
+}
+
+
+.oz-btn-center .oz-btn-icon{background-repeat:no-repeat;}
+
+.oz-tb .oz-btn-center .oz-icon-default {background-image:url(images/toolbar-buttons.gif); background-position:0px 0px;}             /* 按钮显示的图片 */
+
+.oz-tb .oz-btn-center .oz-icon-back {background-image:url(images/toolbar-buttons.gif); background-position:-16px -16px;}              /* 返回 */
+.oz-tb .oz-btn-center .oz-icon-new {background-image:url(images/toolbar-buttons.gif); background-position:-32px -16px;}             /* 新建 */
+.oz-tb .oz-btn-center .oz-icon-edit {background-image:url(images/toolbar-buttons.gif); background-position:-48px -16px;}            /* 编辑 */
+.oz-tb .oz-btn-center .oz-icon-save {background-image:url(images/toolbar-buttons.gif); background-position:-64px -16px;}            /* 保存 */
+.oz-tb .oz-btn-center .oz-icon-saveAs {background-image:url(images/toolbar-buttons.gif); background-position:-80px -16px;}          /* 另存为 */
+.oz-tb .oz-btn-center .oz-icon-delete {background-image:url(images/toolbar-buttons.gif); background-position:-96px -16px;}          /* 删除 */
+.oz-tb .oz-btn-center .oz-icon-search {background-image:url(images/toolbar-buttons.gif); background-position:-112px -16px;}          /* 搜索 */
+.oz-tb .oz-btn-center .oz-icon-refresh {background-image:url(images/toolbar-buttons.gif); background-position:-128px -16px;}        /* 刷新 */
+.oz-tb .oz-btn-center .oz-icon-print {background-image:url(images/toolbar-buttons.gif); background-position:-144px -16px;}          /* 打印 */
+.oz-tb .oz-btn-center .oz-icon-move {background-image:url(images/toolbar-buttons.gif); background-position:-160px -16px;}           /* 移动 */
+.oz-tb .oz-btn-center .oz-icon-disable {background-image:url(images/toolbar-buttons.gif); background-position:-176px -16px;}        /* 禁用 */
+.oz-tb .oz-btn-center .oz-icon-enabled {background-image:url(images/toolbar-buttons.gif); background-position:-192px -16px;}        /* 激活 */
+.oz-tb .oz-btn-center .oz-icon-upfile {background-image:url(images/toolbar-buttons.gif); background-position:-208px -16px;}         /* 上传文件 */
+.oz-tb .oz-btn-center .oz-icon-issuance {background-image:url(images/toolbar-buttons.gif); background-position:-224px -16px;}       /* 发布 */
+.oz-tb .oz-btn-center .oz-icon-unissuance {background-image:url(images/toolbar-buttons.gif); background-position:-240px -16px;}     /* 删除发布 */
+.oz-tb .oz-btn-center .oz-icon-pigeonhole {background-image:url(images/toolbar-buttons.gif); background-position:-256px -16px;}     /* 归档 */
+.oz-tb .oz-btn-center .oz-icon-mobileSms {background-image:url(images/toolbar-buttons.gif); background-position:-272px -16px;}      /* 手机短信 */
+.oz-tb .oz-btn-center .oz-icon-pic {background-image:url(images/toolbar-buttons.gif); background-position:-288px -16px;}            /* 图片 */
+.oz-tb .oz-btn-center .oz-icon-submit {background-image:url(images/toolbar-buttons.gif); background-position:-304px -16px;}         /* 提交 */
+.oz-tb .oz-btn-center .oz-icon-stat {background-image:url(images/toolbar-buttons.gif); background-position:-320px -16px;}           /* 统计 */
+.oz-tb .oz-btn-center .oz-icon-addattachment {background-image:url(images/toolbar-buttons.gif); background-position:-336px -16px;}    /* 添加附件 */
+.oz-tb .oz-btn-center .oz-icon-deleteattachment {background-image:url(images/toolbar-buttons.gif); background-position:-352px -16px;} /* 删除附件 */
+.oz-tb .oz-btn-center .oz-icon-ASSms {background-image:url(images/toolbar-buttons.gif); background-position:-368px -16px;}          /* 已发短信 */
+.oz-tb .oz-btn-center .oz-icon-allASSms {background-image:url(images/toolbar-buttons.gif); background-position:-384px -16px;}       /* 所有发送记录 */
+.oz-tb .oz-btn-center .oz-icon-scan {background-image:url(images/toolbar-buttons.gif); background-position:-400px -16px;}           /* 扫描 */
+.oz-tb .oz-btn-center .oz-icon-addScan {background-image:url(images/toolbar-buttons.gif); background-position:-416px -16px;}        /* 添加扫描 */
+.oz-tb .oz-btn-center .oz-icon-pagePrevious {background-image:url(images/toolbar-buttons.gif); background-position:-432px -16px;}   /* 上一页 */
+.oz-tb .oz-btn-center .oz-icon-pageNext {background-image:url(images/toolbar-buttons.gif); background-position:-448px -16px;}       /* 下一页 */
+.oz-tb .oz-btn-center .oz-icon-finish {background-image:url(images/toolbar-buttons.gif); background-position:-464px -16px;}         /* 完成 */
+
+.oz-tb .oz-btn-center .oz-icon-transmit {background-image:url(images/toolbar-buttons.gif);background-position:-16px -32px;}         /*转发文*/
+.oz-tb .oz-btn-center .oz-icon-afreshDistribute {background-image:url(images/toolbar-buttons.gif);background-position:-32px -32px;} /*重新分办*/
+.oz-tb .oz-btn-center .oz-icon-number {background-image:url(images/toolbar-buttons.gif);background-position:-48px -32px;}           /*编号*/
+.oz-tb .oz-btn-center .oz-icon-modifyState {background-image:url(images/toolbar-buttons.gif);background-position:-64px -32px;}      /*修改状态词*/
+.oz-tb .oz-btn-center .oz-icon-idiograph {background-image:url(images/toolbar-buttons.gif);background-position:-80px -32px;}        /*签名*/
+.oz-tb .oz-btn-center .oz-icon-delSign {background-image:url(images/toolbar-buttons.gif);background-position:-96px -32px;}          /*清除签名*/
+.oz-tb .oz-btn-center .oz-icon-stamp {background-image:url(images/toolbar-buttons.gif);background-position:-112px -32px;}           /*盖章*/
+.oz-tb .oz-btn-center .oz-icon-modifyType {background-image:url(images/toolbar-buttons.gif);background-position:-128px -32px;}      /*修改文件类型*/
+.oz-tb .oz-btn-center .oz-icon-idea {background-image:url(images/toolbar-buttons.gif);background-position:-144px -32px;}            /*意见*/
+.oz-tb .oz-btn-center .oz-icon-supplementIdea {background-image:url(images/toolbar-buttons.gif);background-position:-160px -32px;}  /*追加意见*/
+.oz-tb .oz-btn-center .oz-icon-send {background-image:url(images/toolbar-buttons.gif);background-position:-176px -32px;}            /*发送*/
+.oz-tb .oz-btn-center .oz-icon-cancel {background-image:url(images/toolbar-buttons.gif);background-position:-192px -32px;}           /*取消*/
+.oz-tb .oz-btn-center .oz-icon-reclaim {background-image:url(images/toolbar-buttons.gif);background-position:-208px -32px;}         /*回收文件*/
+.oz-tb .oz-btn-center .oz-icon-sendBack {background-image:url(images/toolbar-buttons.gif);background-position:-224px -32px;}        /*退回文件*/
+.oz-tb .oz-btn-center .oz-icon-turnSave {background-image:url(images/toolbar-buttons.gif);background-position:-240px -32px;}        /*转存*/
+.oz-tb .oz-btn-center .oz-icon-gather {background-image:url(images/toolbar-buttons.gif);background-position:-256px -32px;}          /*汇总*/
+.oz-tb .oz-btn-center .oz-icon-showreversion {background-image:url(images/toolbar-buttons.gif);background-position:-272px -32px;}   /*批改痕迹*/
+.oz-tb .oz-btn-center .oz-icon-hidereversion {background-image:url(images/toolbar-buttons.gif);background-position:-288px -32px;}   /*清样*/
+.oz-tb .oz-btn-center .oz-icon-importfile {background-image:url(images/toolbar-buttons.gif);background-position:-304px -32px;}      /*插入文件*/
+.oz-tb .oz-btn-center .oz-icon-inserttemplate {background-image:url(images/toolbar-buttons.gif);background-position:-320px -32px;}  /*引入文头*/
+.oz-tb .oz-btn-center .oz-icon-form {background-image:url(images/toolbar-buttons.gif);background-position:-336px -32px;}            /*查看稿头*/
+.oz-tb .oz-btn-center .oz-icon-showlaiwen {background-image:url(images/toolbar-buttons.gif);background-position:-352px -32px;}      /*查看来文内容*/
+.oz-tb .oz-btn-center .oz-icon-changepassword {background-image:url(images/toolbar-buttons.gif);background-position:-368px -32px;}  /*口令*/
+.oz-tb .oz-btn-center .oz-icon-overdue {background-image:url(images/toolbar-buttons.gif);background-position:-384px -32px;}         /*过期*/
+.oz-tb .oz-btn-center .oz-icon-view {background-image:url(images/toolbar-buttons.gif);background-position:-400px -32px;}            /*查看*/
+.oz-tb .oz-btn-center .oz-icon-selectIdea {background-image:url(images/toolbar-buttons.gif);background-position:-416px -32px;}      /*选择意见*/
+.oz-tb .oz-btn-center .oz-icon-inductIdea {background-image:url(images/toolbar-buttons.gif);background-position:-432px -32px;}      /*引入意见*/
+.oz-tb .oz-btn-center .oz-icon-clear {background-image:url(images/toolbar-buttons.gif);background-position:-448px -32px;}           /*清除*/
+.oz-tb .oz-btn-center .oz-icon-clearWastebin {background-image:url(images/toolbar-buttons.gif);background-position:-464px -32px;}   /*清除垃圾桶*/
+.oz-tb .oz-btn-center .oz-icon-outWarranty {background-image:url(images/toolbar-buttons.gif);background-position:-480px -32px;}     /*外出授权*/
+.oz-tb .oz-btn-center .oz-icon-coalesceTransact {background-image:url(images/toolbar-buttons.gif);background-position:-496px -32px;} /*联合办文*/
+.oz-tb .oz-btn-center .oz-icon-getSubjectKey {background-image:url(images/toolbar-buttons.gif);background-position:-512px -32px;}    /*提取主题词*/
+.oz-tb .oz-btn-center .oz-icon-subject {background-image:url(images/toolbar-buttons.gif);background-position:-528px -32px;}          /*登记标题*/
+
+
+/*导出类*/
+.oz-tb .oz-btn-center .oz-icon-run {background-image:url(images/toolbar-buttons.gif); background-position:-16px -48px;}             /* 运行 */
+.oz-tb .oz-btn-center .oz-icon-doc {background-image:url(images/toolbar-buttons.gif); background-position:-32px -48px;}             /* doc */
+.oz-tb .oz-btn-center .oz-icon-xls {background-image:url(images/toolbar-buttons.gif); background-position:-48px -48px;}             /* xls */
+ 
+.oz-tb .oz-btn-center .oz-icon-newGroup {background-image:url(images/toolbar-buttons.gif); background-position:-16px -64px;}          /* 新建组 */
+.oz-tb .oz-btn-center .oz-icon-delGroup {background-image:url(images/toolbar-buttons.gif); background-position:-32px -64px;}        /* 删除组 */
+.oz-tb .oz-btn-center .oz-icon-editGroup {background-image:url(images/toolbar-buttons.gif); background-position:-48px -64px;}       /* 编辑组 */
+
+.oz-tb .oz-btn-center .oz-icon-addUser {background-image:url(images/toolbar-buttons.gif); background-position:-160px -64px;}        /* 添加人员 */
+.oz-tb .oz-btn-center .oz-icon-addGroup {background-image:url(images/toolbar-buttons.gif); background-position:-176px -64px;}       /* 添加岗位 */
+.oz-tb .oz-btn-center .oz-icon-addDepartment {background-image:url(images/toolbar-buttons.gif); background-position:-192px -64px;}  /* 添加部门 */
+.oz-tb .oz-btn-center .oz-icon-addRole {background-image:url(images/toolbar-buttons.gif); background-position:-208px -64px;}        /* 添加角色 */
+.oz-tb .oz-btn-center .oz-icon-addRule {background-image:url(images/toolbar-buttons.gif); background-position:-224px -64px;}        /* 添加规则 */
+
+.oz-tb .oz-btn-center .oz-icon-numberBeforehand {background-image:url(images/toolbar-buttons.gif); background-position:-304px -64px;}  /* 预分配 */
+.oz-tb .oz-btn-center .oz-icon-numberUndecided {background-image:url(images/toolbar-buttons.gif); background-position:-320px -64px;}   /* 设置未分配 */
+.oz-tb .oz-btn-center .oz-icon-numberDecided {background-image:url(images/toolbar-buttons.gif); background-position:-336px -64px;}     /* 设置已分配 */
+
+.oz-tb .oz-btn-center .oz-icon-relation {background-image:url(images/toolbar-buttons.gif); background-position:-400px -64px;}         /* 关联 */
+.oz-tb .oz-btn-center .oz-icon-unRelation {background-image:url(images/toolbar-buttons.gif); background-position:-416px -64px;}       /* 解除关联 */
+
+
+/**
+ * 工具条中搜索控件，fc为form control的缩写
+ * 作者：dragon 2010-07-21
+ */
+.oz-tb .oz-btn .oz-fc-search{
+	background-color:#FFFFFF;
+	border-color:#8A9AA9;
+	border-width:1px;
+	border-style:solid;
+	padding:0 0 0 0;
+	margin:1px 8px 0 0;
+	_margin-right:0;/*IE fix*/
+	height:18px;
+	line-height:18px;
+	overflow:hidden;
+}
+.oz-fc-advanceSearch{
+	width:138px;
+}
+.oz-fc-search *{
+	margin:0;
+	padding:0;
+}
+.oz-fc-search input{
+	margin:2px 2px 0 2px;
+	padding:0px 0 0 0px;
+	border:0;
+	width:150px;
+	height:16px;
+	float:left;
+}
+.oz-fc-search span{
+	display:block;
+	width:18px;
+	height:18px;
+	line-height:18px;
+	margin-top:0px;
+	float:left;
+}
+/* 按钮的图片 */
+.oz-fc-search span.searchIcon{
+	background-image:url(images/toolbar-btn-search.png);
+	background-repeat:no-repeat;
+	background-color:gray;
+}
+/* 按钮的常规状态 */
+.oz-fc-search span.simple{
+	background-position:0 0;
+}
+.oz-fc-search span.advance{
+	background-position:-18px 0;
+}
+.oz-fc-search span.clean{
+	background-position:-36px 0;
+}
+/* 按钮的鼠标悬停状态 */
+.oz-fc-search span.overSimple{
+	background-position:0 -18px;
+}
+.oz-fc-search span.overAdvance{
+	background-position:-18px -18px;
+}
+.oz-fc-search span.overClean{
+	background-position:-36px -18px;
+}
+/* 按钮的鼠标点击状态 */
+.oz-fc-search span.clickSimple{
+	background-position:0 -36px;
+}
+.oz-fc-search span.clickAdvance{
+	background-position:-18px -36px;
+}
+.oz-fc-search span.clickClean{
+	background-position:-36px -36px;
+}

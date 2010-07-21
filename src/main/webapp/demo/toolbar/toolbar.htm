@@ -1,0 +1,98 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../../ozBase/themes/default/oz-common.css" />
+	<link rel="stylesheet" type="text/css" href="../../ozBase/themes/default/oz-toolbar.css" />
+	<link rel="stylesheet" type="text/css" href="../../ozBase/themes/default/oz-toolbar-button.css" />
+	<link rel="stylesheet" type="text/css" href="../../ozBase/themes/default/oz-log.css" />
+</head>
+<body style="padding: 20px; overflow: auto;">
+<h1 style="font-size: 18px;">工具条演示</h1>
+<br />
+<p>演示如何创建工具条，可以使用简写OZ.TB代替OZ.Toolbar，API文档参考 <a
+	href="../../ozBase/api/toolbar/toolbar.html">OZ.Toolbar API</a></p>
+<br />
+注：按<a	href="#" onclick="ozlog.toggle();">Ctrl+Home</a>键切换控制台的显示
+<br />
+<br />
+<br />
+没有图片的工具条，按钮默认左对齐
+<div style="border:3px solid #C3DAF9;height:60px;width:600px;">
+	<div id="tbContainer01"></div>
+</div>
+有图片的工具条，按钮右对齐
+<div style="border:3px solid #C3DAF9;height:60px;width:600px;">
+	<div id="tbContainer02"></div>
+</div>
+按钮居中对齐
+<div style="border:3px solid #C3DAF9;height:60px;width:600px;">
+	<div id="tbContainer03"></div>
+</div>
+<p>代码参考：</p>
+<div style="width: 300px;float: left;">
+<pre name="code" class="js">
+var tb01 = new OZ.TB({
+	id: 'myTBId',
+    buttons: ["|",
+	    {text: '新建', disabled: true},
+	    {text: '保存', handler: function(){
+	    	alert('点击保存按钮！');
+	    }},
+	    {text: '编辑', handler: function(){
+	    	alert('点击编辑按钮！');
+	    }},
+	    "|",
+	    {text: '删除', handler: function(){
+	    	alert('点击删除按钮！');
+	    }},
+	    {text: '搜索', handler: function(){
+	    	alert('点击搜索按钮！');
+	    }},
+	    {text: '刷新', handler: function(){
+	    	alert('点击查询按钮！');
+	    }}
+    ]
+});</pre>
+</div>
+<div style="width: 400px;float: left;">
+<pre name="code" class="js">
+var tb02 = new OZ.TB({
+	id: 'myTBId',
+	buttons: ["|",
+	  {text: '新建', iconCls: 'e-icon-new', disabled: true},
+	  {text: '保存', iconCls: 'e-icon-save', handler: function(){
+	  	alert('点击保存按钮！');
+	  }},
+	  {text: '编辑', iconCls: 'e-icon-edit', handler: function(){
+	  	alert('点击编辑按钮！');
+	  }},
+	  "|",
+	  {text: '删除', iconCls: 'e-icon-delete', handler: function(){
+	  	alert('点击删除按钮！');
+	  }},
+	  {text: '搜索', iconCls: 'e-icon-search', handler: function(){
+	  	alert('点击搜索按钮！');
+	  }},
+	  {text: '刷新', iconCls: 'e-icon-refresh', handler: function(){
+	  	alert('点击刷新按钮！');
+	  }}
+	],
+	buttonAlign: "right"
+});</pre>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../../ozBase/jquery-1.4.2.js"></script>
+
+<!-- jquery.ui的js也可以不引用，少了拖动调试控制台的功能而已 -->
+<script type="text/javascript" src="../../ozBase/jqueryui/plugins/jquery.ui.core.js"></script>
+<script type="text/javascript" src="../../ozBase/jqueryui/plugins/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="../../ozBase/jqueryui/plugins/jquery.ui.mouse.js"></script>
+<script type="text/javascript" src="../../ozBase/jqueryui/plugins/jquery.ui.draggable.js"></script>
+
+<script type="text/javascript" src="../../ozBase/plugins/oz.core.js"></script>
+<script type="text/javascript" src="../../ozBase/plugins/oz.log.js"></script>
+<script type="text/javascript" src="../../ozBase/plugins/oz.toolbar.js"></script>
+<script type="text/javascript" src="toolbar.js"></script>

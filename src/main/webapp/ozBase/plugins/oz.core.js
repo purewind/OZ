@@ -492,3 +492,37 @@
 	});
 
 })(jQuery);
+
+/** 普通的字符串格式化函数 
+ * 例：'<li class="{1}">{0}</li>'.format('test0','test1')
+ *     的结果为'<li class="test1">test0</li>'
+ */
+String.format=function(format){
+    var args = Array.prototype.slice.call(arguments, 1);
+    return format.replace(/\{(\d+)\}/g, function(m, i){
+        return args[i];
+    });
+};
+String.prototype.format=function(){
+    var args = arguments;
+    return this.replace(/\{(\d+)\}/g, function(m, i){
+        return args[i];
+    });
+};
+
+/** OZ通用工具方法
+ * dragon 2010-07-21
+ * singleton 
+ * 依赖 无
+ */
+var OZ={
+	/** 空函数 */
+	emptyFn: function(){}
+};
+
+/** 调试控制台的幻象，实际的控制台见oz.log.js */
+var ozlog = {
+	debugEnable: false,infoEnable:false,warnEnable:	false,profileEnable: false,
+	clear:OZ.emptyFn,debug:OZ.emptyFn,info:OZ.emptyFn,warn:OZ.emptyFn,error:OZ.emptyFn,
+	profile:OZ.emptyFn,enable:OZ.emptyFn,disabled:OZ.emptyFn,show:OZ.emptyFn
+};

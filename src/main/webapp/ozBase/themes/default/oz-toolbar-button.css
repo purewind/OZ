@@ -1,0 +1,91 @@
+.oz-btn-center .oz-btn-icon{background-repeat:no-repeat;}
+
+.oz-tb .oz-btn-center .oz-icon-default {background-image:url(images/toolbar-buttons.gif); background-position:0px 0px;}             /* 按钮显示的图片 */
+
+.oz-tb .oz-btn-center .oz-icon-back {background-image:url(images/toolbar-buttons.gif); background-position:-16px -16px;}              /* 返回 */
+.oz-tb .oz-btn-center .oz-icon-new {background-image:url(images/toolbar-buttons.gif); background-position:-32px -16px;}             /* 新建 */
+.oz-tb .oz-btn-center .oz-icon-edit {background-image:url(images/toolbar-buttons.gif); background-position:-48px -16px;}            /* 编辑 */
+.oz-tb .oz-btn-center .oz-icon-save {background-image:url(images/toolbar-buttons.gif); background-position:-64px -16px;}            /* 保存 */
+.oz-tb .oz-btn-center .oz-icon-saveAs {background-image:url(images/toolbar-buttons.gif); background-position:-80px -16px;}          /* 另存为 */
+.oz-tb .oz-btn-center .oz-icon-delete {background-image:url(images/toolbar-buttons.gif); background-position:-96px -16px;}          /* 删除 */
+.oz-tb .oz-btn-center .oz-icon-search {background-image:url(images/toolbar-buttons.gif); background-position:-112px -16px;}          /* 搜索 */
+.oz-tb .oz-btn-center .oz-icon-refresh {background-image:url(images/toolbar-buttons.gif); background-position:-128px -16px;}        /* 刷新 */
+.oz-tb .oz-btn-center .oz-icon-print {background-image:url(images/toolbar-buttons.gif); background-position:-144px -16px;}          /* 打印 */
+.oz-tb .oz-btn-center .oz-icon-move {background-image:url(images/toolbar-buttons.gif); background-position:-160px -16px;}           /* 移动 */
+.oz-tb .oz-btn-center .oz-icon-disable {background-image:url(images/toolbar-buttons.gif); background-position:-176px -16px;}        /* 禁用 */
+.oz-tb .oz-btn-center .oz-icon-enabled {background-image:url(images/toolbar-buttons.gif); background-position:-192px -16px;}        /* 激活 */
+.oz-tb .oz-btn-center .oz-icon-upfile {background-image:url(images/toolbar-buttons.gif); background-position:-208px -16px;}         /* 上传文件 */
+.oz-tb .oz-btn-center .oz-icon-issuance {background-image:url(images/toolbar-buttons.gif); background-position:-224px -16px;}       /* 发布 */
+.oz-tb .oz-btn-center .oz-icon-unissuance {background-image:url(images/toolbar-buttons.gif); background-position:-240px -16px;}     /* 删除发布 */
+.oz-tb .oz-btn-center .oz-icon-pigeonhole {background-image:url(images/toolbar-buttons.gif); background-position:-256px -16px;}     /* 归档 */
+.oz-tb .oz-btn-center .oz-icon-mobileSms {background-image:url(images/toolbar-buttons.gif); background-position:-272px -16px;}      /* 手机短信 */
+.oz-tb .oz-btn-center .oz-icon-pic {background-image:url(images/toolbar-buttons.gif); background-position:-288px -16px;}            /* 图片 */
+.oz-tb .oz-btn-center .oz-icon-submit {background-image:url(images/toolbar-buttons.gif); background-position:-304px -16px;}         /* 提交 */
+.oz-tb .oz-btn-center .oz-icon-stat {background-image:url(images/toolbar-buttons.gif); background-position:-320px -16px;}           /* 统计 */
+.oz-tb .oz-btn-center .oz-icon-addattachment {background-image:url(images/toolbar-buttons.gif); background-position:-336px -16px;}    /* 添加附件 */
+.oz-tb .oz-btn-center .oz-icon-deleteattachment {background-image:url(images/toolbar-buttons.gif); background-position:-352px -16px;} /* 删除附件 */
+.oz-tb .oz-btn-center .oz-icon-ASSms {background-image:url(images/toolbar-buttons.gif); background-position:-368px -16px;}          /* 已发短信 */
+.oz-tb .oz-btn-center .oz-icon-allASSms {background-image:url(images/toolbar-buttons.gif); background-position:-384px -16px;}       /* 所有发送记录 */
+.oz-tb .oz-btn-center .oz-icon-scan {background-image:url(images/toolbar-buttons.gif); background-position:-400px -16px;}           /* 扫描 */
+.oz-tb .oz-btn-center .oz-icon-addScan {background-image:url(images/toolbar-buttons.gif); background-position:-416px -16px;}        /* 添加扫描 */
+.oz-tb .oz-btn-center .oz-icon-pagePrevious {background-image:url(images/toolbar-buttons.gif); background-position:-432px -16px;}   /* 上一页 */
+.oz-tb .oz-btn-center .oz-icon-pageNext {background-image:url(images/toolbar-buttons.gif); background-position:-448px -16px;}       /* 下一页 */
+.oz-tb .oz-btn-center .oz-icon-finish {background-image:url(images/toolbar-buttons.gif); background-position:-464px -16px;}         /* 完成 */
+
+.oz-tb .oz-btn-center .oz-icon-transmit {background-image:url(images/toolbar-buttons.gif);background-position:-16px -32px;}         /*转发文*/
+.oz-tb .oz-btn-center .oz-icon-afreshDistribute {background-image:url(images/toolbar-buttons.gif);background-position:-32px -32px;} /*重新分办*/
+.oz-tb .oz-btn-center .oz-icon-number {background-image:url(images/toolbar-buttons.gif);background-position:-48px -32px;}           /*编号*/
+.oz-tb .oz-btn-center .oz-icon-modifyState {background-image:url(images/toolbar-buttons.gif);background-position:-64px -32px;}      /*修改状态词*/
+.oz-tb .oz-btn-center .oz-icon-idiograph {background-image:url(images/toolbar-buttons.gif);background-position:-80px -32px;}        /*签名*/
+.oz-tb .oz-btn-center .oz-icon-delSign {background-image:url(images/toolbar-buttons.gif);background-position:-96px -32px;}          /*清除签名*/
+.oz-tb .oz-btn-center .oz-icon-stamp {background-image:url(images/toolbar-buttons.gif);background-position:-112px -32px;}           /*盖章*/
+.oz-tb .oz-btn-center .oz-icon-modifyType {background-image:url(images/toolbar-buttons.gif);background-position:-128px -32px;}      /*修改文件类型*/
+.oz-tb .oz-btn-center .oz-icon-idea {background-image:url(images/toolbar-buttons.gif);background-position:-144px -32px;}            /*意见*/
+.oz-tb .oz-btn-center .oz-icon-supplementIdea {background-image:url(images/toolbar-buttons.gif);background-position:-160px -32px;}  /*追加意见*/
+.oz-tb .oz-btn-center .oz-icon-send {background-image:url(images/toolbar-buttons.gif);background-position:-176px -32px;}            /*发送*/
+.oz-tb .oz-btn-center .oz-icon-cancel {background-image:url(images/toolbar-buttons.gif);background-position:-192px -32px;}           /*取消*/
+.oz-tb .oz-btn-center .oz-icon-reclaim {background-image:url(images/toolbar-buttons.gif);background-position:-208px -32px;}         /*回收文件*/
+.oz-tb .oz-btn-center .oz-icon-sendBack {background-image:url(images/toolbar-buttons.gif);background-position:-224px -32px;}        /*退回文件*/
+.oz-tb .oz-btn-center .oz-icon-turnSave {background-image:url(images/toolbar-buttons.gif);background-position:-240px -32px;}        /*转存*/
+.oz-tb .oz-btn-center .oz-icon-gather {background-image:url(images/toolbar-buttons.gif);background-position:-256px -32px;}          /*汇总*/
+.oz-tb .oz-btn-center .oz-icon-showreversion {background-image:url(images/toolbar-buttons.gif);background-position:-272px -32px;}   /*批改痕迹*/
+.oz-tb .oz-btn-center .oz-icon-hidereversion {background-image:url(images/toolbar-buttons.gif);background-position:-288px -32px;}   /*清样*/
+.oz-tb .oz-btn-center .oz-icon-importfile {background-image:url(images/toolbar-buttons.gif);background-position:-304px -32px;}      /*插入文件*/
+.oz-tb .oz-btn-center .oz-icon-inserttemplate {background-image:url(images/toolbar-buttons.gif);background-position:-320px -32px;}  /*引入文头*/
+.oz-tb .oz-btn-center .oz-icon-form {background-image:url(images/toolbar-buttons.gif);background-position:-336px -32px;}            /*查看稿头*/
+.oz-tb .oz-btn-center .oz-icon-showlaiwen {background-image:url(images/toolbar-buttons.gif);background-position:-352px -32px;}      /*查看来文内容*/
+.oz-tb .oz-btn-center .oz-icon-changepassword {background-image:url(images/toolbar-buttons.gif);background-position:-368px -32px;}  /*口令*/
+.oz-tb .oz-btn-center .oz-icon-overdue {background-image:url(images/toolbar-buttons.gif);background-position:-384px -32px;}         /*过期*/
+.oz-tb .oz-btn-center .oz-icon-view {background-image:url(images/toolbar-buttons.gif);background-position:-400px -32px;}            /*查看*/
+.oz-tb .oz-btn-center .oz-icon-selectIdea {background-image:url(images/toolbar-buttons.gif);background-position:-416px -32px;}      /*选择意见*/
+.oz-tb .oz-btn-center .oz-icon-inductIdea {background-image:url(images/toolbar-buttons.gif);background-position:-432px -32px;}      /*引入意见*/
+.oz-tb .oz-btn-center .oz-icon-clear {background-image:url(images/toolbar-buttons.gif);background-position:-448px -32px;}           /*清除*/
+.oz-tb .oz-btn-center .oz-icon-clearWastebin {background-image:url(images/toolbar-buttons.gif);background-position:-464px -32px;}   /*清除垃圾桶*/
+.oz-tb .oz-btn-center .oz-icon-outWarranty {background-image:url(images/toolbar-buttons.gif);background-position:-480px -32px;}     /*外出授权*/
+.oz-tb .oz-btn-center .oz-icon-coalesceTransact {background-image:url(images/toolbar-buttons.gif);background-position:-496px -32px;} /*联合办文*/
+.oz-tb .oz-btn-center .oz-icon-getSubjectKey {background-image:url(images/toolbar-buttons.gif);background-position:-512px -32px;}    /*提取主题词*/
+.oz-tb .oz-btn-center .oz-icon-subject {background-image:url(images/toolbar-buttons.gif);background-position:-528px -32px;}          /*登记标题*/
+
+
+/*导出类*/
+.oz-tb .oz-btn-center .oz-icon-run {background-image:url(images/toolbar-buttons.gif); background-position:-16px -48px;}             /* 运行 */
+.oz-tb .oz-btn-center .oz-icon-doc {background-image:url(images/toolbar-buttons.gif); background-position:-32px -48px;}             /* doc */
+.oz-tb .oz-btn-center .oz-icon-xls {background-image:url(images/toolbar-buttons.gif); background-position:-48px -48px;}             /* xls */
+ 
+.oz-tb .oz-btn-center .oz-icon-newGroup {background-image:url(images/toolbar-buttons.gif); background-position:-16px -64px;}          /* 新建组 */
+.oz-tb .oz-btn-center .oz-icon-delGroup {background-image:url(images/toolbar-buttons.gif); background-position:-32px -64px;}        /* 删除组 */
+.oz-tb .oz-btn-center .oz-icon-editGroup {background-image:url(images/toolbar-buttons.gif); background-position:-48px -64px;}       /* 编辑组 */
+
+.oz-tb .oz-btn-center .oz-icon-addUser {background-image:url(images/toolbar-buttons.gif); background-position:-160px -64px;}        /* 添加人员 */
+.oz-tb .oz-btn-center .oz-icon-addGroup {background-image:url(images/toolbar-buttons.gif); background-position:-176px -64px;}       /* 添加岗位 */
+.oz-tb .oz-btn-center .oz-icon-addDepartment {background-image:url(images/toolbar-buttons.gif); background-position:-192px -64px;}  /* 添加部门 */
+.oz-tb .oz-btn-center .oz-icon-addRole {background-image:url(images/toolbar-buttons.gif); background-position:-208px -64px;}        /* 添加角色 */
+.oz-tb .oz-btn-center .oz-icon-addRule {background-image:url(images/toolbar-buttons.gif); background-position:-224px -64px;}        /* 添加规则 */
+
+.oz-tb .oz-btn-center .oz-icon-numberBeforehand {background-image:url(images/toolbar-buttons.gif); background-position:-304px -64px;}  /* 预分配 */
+.oz-tb .oz-btn-center .oz-icon-numberUndecided {background-image:url(images/toolbar-buttons.gif); background-position:-320px -64px;}   /* 设置未分配 */
+.oz-tb .oz-btn-center .oz-icon-numberDecided {background-image:url(images/toolbar-buttons.gif); background-position:-336px -64px;}     /* 设置已分配 */
+
+.oz-tb .oz-btn-center .oz-icon-relation {background-image:url(images/toolbar-buttons.gif); background-position:-400px -64px;}         /* 关联 */
+.oz-tb .oz-btn-center .oz-icon-unRelation {background-image:url(images/toolbar-buttons.gif); background-position:-416px -64px;}       /* 解除关联 */
+
