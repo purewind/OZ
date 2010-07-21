@@ -3,16 +3,16 @@ jQuery(function($){
 		id: 'tbContainer01',
 	    buttons: ["|",
 		    {text: '返回', iconCls: 'oz-icon-back', handler: function(){
-		    	alert('点击返回按钮！');
+	    		ozlog.info("点击返回按钮！");
 		    }},
 		    {text: '保存', iconCls: 'oz-icon-save', handler: function(){
-		    	alert('点击保存按钮！');
+		    	ozlog.info("点击保存按钮！");
 		    }},
 		    {text: '刷新', iconCls: 'oz-icon-refresh', handler: function(){
-		    	alert('点击刷新按钮！');
+		    	ozlog.info("点击刷新按钮！");
 		    }},
 		    {type:'search',onSearch:function(value){
-		    		ozlog.debug("onSearch:value="+value);
+		    		ozlog.info("onSearch:value="+value);
 		    	}
 		    }
 	    ]
@@ -21,23 +21,23 @@ jQuery(function($){
 		id: 'tbContainer02',
 	    buttons: ["|",
 		    {text: '返回', handler: function(){
-		    	alert('点击返回按钮！');
+	    	ozlog.info("点击返回按钮！");
 		    }},
 		    {text: '保存', handler: function(){
-		    	alert('点击保存按钮！');
+		    	ozlog.info("点击保存按钮！");
 		    }},
 		    {text: '刷新', handler: function(){
-		    	alert('点击刷新按钮！');
+		    	ozlog.info("点击刷新按钮！");
 		    }},
 		    {type:'search',value:"办公室",btns:"search,advance,clean",
 		    	onSearch:function(value){
-		    		ozlog.debug("onSearch:value="+value);
+		    		ozlog.info("onSearch:value="+value);
 		    	},
 		    	onAdvance:function(value){
-		    		ozlog.debug("onAdvance:value="+value);
+		    		ozlog.info("onAdvance:value="+value);
 		    	},
 		    	onClean:function(value){
-		    		ozlog.debug("onClean:value="+value);
+		    		ozlog.info("onClean:value="+value);
 		    	}
 		    }
 	    ]
@@ -66,7 +66,7 @@ jQuery(function($){
 		    	}
 		    },"|",
 		    {text: '刷新', handler: function(){
-		    	alert('点击刷新按钮！');
+		    	ozlog.info("点击刷新按钮！");
 		    }}
 	    ]
 	});

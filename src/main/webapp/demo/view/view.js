@@ -1,89 +1,99 @@
-$(initGrid);
-function initGrid() {
-	//窗口大小变动后自动调整grid的
-	$(window).resize(function(){
-		$("#gridContainer").datagrid("resize");
-	});
-	
-	$('#gridContainer').datagrid( {
-		url: 'view.json',
-		idField: 'id',
-		frozenColumns: [[ 
-		    {field: 'code',checkbox: true}, 
-		    {field: 'subject',title: '标题',width: 150,sortable: true,formatter:function(value){
-				return '<a href="#" onclick="window.open(\'\../form/form.htm\',\'_blank\')"><b>'+value+'</b></a>';
-			}}
-		]],
-		columns: [[
-		    {field: 'fileDate',title: '发布日期',width: 90,sortable: true},
-		    {field: 'content',title: '内容',width: 300}
-		]],
-		sortName: 'id',
-		sortOrder: 'asc',
-		fit: true,
-		width:500,height:300,
-		nowrap: false,
-		striped: true,
-		remoteSort: false,
-		pagination: true,
-		rownumbers: true,
-		onDblClickRow: function(rowIndex,rowData){
-			alert(rowData.subject);
-		},
-		onLoadSuccess: function(){
+jQuery(function($){
+	thisPage.init();
+});
+
+var m = 200;
+var thisPage = {
+	init: function(){
+		//窗口大小变动后自动调整grid的
+		$(window).resize(function(){
+			$("#gridContainerWraper").hide();
+			$("#gridContainerWraper").height(10);
+			$("#gridContainerWraper").height($("#TD01").height());
+			$("#gridContainerWraper").show();
+			$("#gridContainer").datagrid("resize");
+
+			/*
+			m=m+1;
 			//$("#gridContainer").datagrid("resize");
-		},
-		toolbar: [ {
-			id: 'btnNew',
-			text: '新建',
-			iconCls: 'icon-add',
-			handler: function() {
-				alert('新建')
+			//$("#gridContainer").height(0);
+			$("#gridContainer").get(0).style.display="none";
+			$("#gridContainer").get(0).style.height="10px";
+			var h=$("#TD01").height();
+			ozlog.debug("resize1:" + $("#gridContainer").get(0).style.height + "--" + m);
+			//$("#gridContainer").height(h-10);
+			$("#gridContainer").get(0).style.height=(h-10)+"px";
+			$("#gridContainer").get(0).style.display="block";
+			ozlog.debug("resize2:" + $("#gridContainer").get(0).style.height + "--" + m);
+			*/
+		});
+		
+		thisPage.initTB();
+		thisPage.initGrid();
+	},
+	initTB: function(){
+		var tb = new OZ.TB({
+			id: 'tbContainer',
+		    buttons: ["|",
+			    {text: '新建', iconCls: 'oz-icon-new', disabled: true},
+			    {text: '保存', iconCls: 'oz-icon-save', handler: function(){
+		    		ozlog.info("点击保存按钮！");
+			    }},
+			    {text: '编辑', iconCls: 'oz-icon-edit', handler: function(){
+		    		ozlog.info("点击编辑按钮！");
+			    }},
+			    "|",
+			    {text: '删除', iconCls: 'oz-icon-delete', handler: function(){
+		    		ozlog.info("点击删除按钮！");
+			    }},
+			    {text: '搜索', iconCls: 'oz-icon-search', handler: function(){
+		    		ozlog.info("点击搜索按钮！");
+			    }},
+			    {text: '刷新', iconCls: 'oz-icon-refresh', handler: function(){
+		    		ozlog.info("点击刷新按钮！");
+			    }},
+			    {type:'search',btns:"search,advance,clean",
+			    	onSearch:function(value){
+		    			ozlog.info("onSearch:value="+value);
+			    	},
+			    	onAdvance:function(value){
+			    		ozlog.info("onAdvance:value="+value);
+			    	},
+			    	onClean:function(value){
+			    		ozlog.info("onClean:value="+value);
+		    	}}
+		    ]
+		});
+	},
+	initGrid: function(){
+		$('#gridContainer').datagrid( {
+			url: 'view.json',
+			idField: 'id',
+			frozenColumns: [[ 
+			    {field: 'code',checkbox: true}, 
+			    {field: 'subject',title: '标题',width: 150,sortable: true,formatter:function(value){
+					return '<a href="#" onclick="window.open(\'\../form/form.htm\',\'_blank\')"><b>'+value+'</b></a>';
+				}}
+			]],
+			columns: [[
+			    {field: 'fileDate',title: '发布日期',width: 90,sortable: true},
+			    {field: 'content',title: '内容',width: 300}
+			]],
+			sortName: 'id',
+			sortOrder: 'asc',
+			fit: true,
+			width:500,height:300,
+			nowrap: false,
+			striped: true,
+			remoteSort: false,
+			pagination: true,
+			rownumbers: true,
+			onDblClickRow: function(rowIndex,rowData){
+				alert(rowData.subject);
+			},
+			onLoadSuccess: function(){
+				//$("#gridContainer").datagrid("resize");
 			}
-		}, {
-			id: 'btnSave',
-			text: '保存',
-			iconCls: 'icon-save',
-			handler: function() {
-				//alert('保存')
-			}
-		},{
-			id: 'btnEdit',
-			text: '编辑',
-			iconCls: 'icon-edit',
-			handler: function() {
-				//alert('编辑')
-			}
-		}, '-', {
-			id: 'btnDelete',
-			text: '删除',
-			iconCls: 'icon-cancel',
-			handler: function() {
-				//alert('删除')
-			}
-		},{
-			id: 'btnPrint',
-			text: '打印',
-			iconCls: 'icon-print',
-			handler: function() {
-				//alert('删除')
-			}
-		},{
-			id: 'btnOk',
-			text: '获取选中行的id',
-			iconCls: 'icon-ok',
-			handler: function() {
-				var rows = $('#gridContainer').datagrid('getSelections');
-				if(rows.length > 0){
-					var ids = [];
-					for(var i=0;i<rows.length;i++){
-						ids.push(rows[i].id);
-					}
-					alert(ids.join(','));
-				}else{
-					alert('请先选择！');
-				}
-			}
-		}]
-	});
-}
+		});
+	}
+};
