@@ -4,7 +4,7 @@
 	margin:0;
 	padding:0;
 }
-.layout-panel{
+.oz-layout-panel{
 	position:absolute;
 	overflow:hidden;
 	padding: 0px;
@@ -92,7 +92,12 @@
 	opacity:0.10;
 	z-index:4;
 }
-
+/* IE6 strict won't drag w/out a color */
+.x-layout-split{
+    background-color: #fff !important;
+    filter: alpha(opacity=1);
+    overflow: hidden;
+}
 .layout-split-v{
 	position: absolute;
 	cursor: n-resize;
@@ -113,4 +118,46 @@
 }
 .oz-drag-overlay{
 	background-color: #cccccc;
+}
+
+
+
+.oz-layout-mini {
+    position:absolute;
+    top:0;
+    left:0;
+    display:block;
+    width:5px;
+    height:35px;
+    cursor:pointer;
+    opacity:.5;
+    -moz-opacity:.5;
+    filter:alpha(opacity=50);
+    line-height:0px;
+}
+.oz-layout-mini-over, .oz-layout-collapsed-over .oz-layout-mini{
+    opacity:1;
+    -moz-opacity:1;
+    filter:none;
+}
+
+.oz-layout-mini-west {
+    top:48%;
+    background-image:url(images/layout-mini-left.gif);
+}
+.oz-layout-mini-east {
+    top:48%;
+    background-image:url(images/layout-mini-right.gif);
+}
+.oz-layout-mini-north {
+    left:48%;
+    height:5px;
+    width:35px;
+    background-image:url(images/layout-mini-top.gif);
+}
+.oz-layout-mini-south {
+    left:48%;
+    height:5px;
+    width:35px;
+    background-image:url(images/layout-mini-bottom.gif);
 }

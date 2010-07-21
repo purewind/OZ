@@ -4,15 +4,17 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>OZ Core</title>
+        <link rel="stylesheet" type="text/css" href="../ozBase/easyui/themes/icon.css">
+		<link rel="stylesheet" type="text/css" href="../ozBase/themes/default/oz-panel.css">
+		<link rel="stylesheet" type="text/css" href="../ozBase/themes/default/oz-layout.css">
+		<link rel="stylesheet" type="text/css" href="../ozBase/themes/default/oz-tabs.css">
 		<script type="text/javascript" src="../ozBase/jquery-1.4.2.min.js"></script>
 		<script type="text/javascript" src="../ozBase/plugins/jquery.metadata.js"></script>
 		<script type="text/javascript" src="../ozBase/plugins/oz.core.js"></script>
 		<script type="text/javascript" src="../ozBase/plugins/oz.panel.js"></script>
 		<script type="text/javascript" src="../ozBase/plugins/oz.mouse.js"></script>
 		<script type="text/javascript" src="../ozBase/plugins/oz.layout.js"></script>
-		<link rel="stylesheet" type="text/css" href="../ozBase/easyui/themes/icon.css">
-		<link rel="stylesheet" type="text/css" href="../ozBase/themes/default/oz-panel.css">
-		<link rel="stylesheet" type="text/css" href="../ozBase/themes/default/oz-layout.css">
+		<script type="text/javascript" src="../ozBase/plugins/oz.tabs.js"></script>
 		<script>
 			function layout(){
 				//第一种方法
@@ -21,40 +23,63 @@
 				//第二种方法
 				//new $.oz.layout({},$("#main-center")[0]);
 			}
-			function showPanel(){
-				$("#panel1").panel({
-					title:"hello",
+			function tabs(){
+				$("#mainTabs").tabPanel();
+				$("#mainTabs").tabPanel("add",{	
+					title:"view",
 					closable:true,
 					maximizable:true,
 					minimizable:true,
 					collapsible:true,
-					width:300,
-					height:500
+					fit:true,
+					content:'<iframe scrolling="auto" frameborder="0"  src="view/view.htm" style="width:100%;height:100%;"></iframe>'
 				});
-				$("#panel2").panel();
+
+				$("#mainTabs").tabPanel("add",{	
+					id:"layout",
+					title:"layout",
+					closable:true,
+					maximizable:true,
+					minimizable:true,
+					collapsible:true,
+					fit:true,
+					selected:true,
+					content:'<iframe scrolling="auto" frameborder="0"  src="layout/layout.jsp" style="width:100%;height:100%;"></iframe>'
+				});
+
+
+				$("#mainTabs").tabPanel("add",{	
+					id:"panel",
+					title:"panel",
+					closable:true,
+					maximizable:true,
+					minimizable:true,
+					collapsible:true,
+					fit:true,
+					content:'<iframe scrolling="auto" frameborder="0"  src="panel/panel.jsp" style="width:100%;height:100%;"></iframe>'
+				});
 			}
 			$(function(){
 				layout();
+				tabs();
 			});
 		</script>
 	</head>
 <body class="{layout:{border:11}}">
-	<div class="oz-layout-north {layoutRegion:{split:true,margins:'0 0 5 0',title:'显示logo信息',height:80}}" style="background:#efefef;">
-		<p>a</p><p>a</p><p>a</p><p>a</p>
+	<div  id="jjj" class="oz-layout-north {layoutRegion:{split:true,margins:'0 0 5 0',height:60}}" style="background:#efefef;">
+		显示logo信息
 	</div>
-	<div class="oz-layout-south {layoutRegion:{split:true,margins:'5 0 0 0',title:'显示版权信息',height:40}}" style="background:#efefef;">
-		south
+	<div class="oz-layout-south {layoutRegion:{split:true,margins:'5 0 0 0',height:20}}" style="background:#efefef;overflow: hidden;">
+		<div style="text-align: right;padding: 3px;overflow: hidden;">广州嘉瑶软件</div>
 	</div>
 	<div class="oz-layout-east {layoutRegion:{split:true,margins:'0 0 0 5',title:'通知',width:200,iconCls:'icon-ok'}}" style="background:#efefef;">
 		east
 	</div>
 	<div class="oz-layout-west {layoutRegion:{split:true,margins:'0 5 0 0',title:'功能菜单',width:200,iconCls:'icon-search'}}" style="background:#efefef;">
-		west
+		<button onclick="$('#mainTabs').tabPanel('close','panel');">close panel</button>
 	</div>
-	<div class="oz-layout-center {layoutRegion:{margins:'0 0 0 0',title:'首页区'}}" style="">
-		afsdf
+	<div class="oz-layout-center {layoutRegion:{margins:'0 0 0 0'}}" style="overflow: hidden;">
+		<div id="mainTabs" class="{tabPanel:{fit:true,border:false}}"></div>
 	</div>
-	<div id="panel1">panel1</div>
-	<div id="panel2" class="{panel:{title:'功能菜单',left:400,top:0,width:300,height:500}}">panel2</div>
 </body>
 </html>

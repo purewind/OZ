@@ -99,8 +99,11 @@
 						<li>easyui is very easy but powerful.</li> 
 					</div>
 				</div>
-				<div title="Tab2" closable="true" style="padding:20px;">This is Tab2 width close button.</div>
-				<div title="Tab3" icon="icon-reload" closable="true" style="overflow:hidden;padding:1px;">
+				<div title="Grid" closable="true">
+					<iframe scrolling="yes" frameborder="0"  src="demo/view/view.htm" style="width:100%;height:100%;"></iframe>
+				</div>
+				<div title="Layout" icon="icon-reload" closable="true" style="overflow:hidden;">
+					<iframe scrolling="yes" frameborder="0"  src="demo/layout/layout.jsp" style="width:100%;height:100%;"></iframe>
 				</div>
 			</div>
 		</div>

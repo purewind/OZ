@@ -127,6 +127,20 @@
 			}
 
 			return 0;
+		},
+		hoverClass: function(className) {
+			className = className || "hover";
+			return this.hover(function() {
+				$(this).addClass(className);
+			}, function() {
+				$(this).removeClass(className);
+			});
+		},
+		swapClass: function(c1, c2) {
+			var c1Elements = this.filter('.' + c1);
+			this.filter('.' + c2).removeClass(c2).addClass(c1);
+			c1Elements.removeClass(c1).addClass(c2);
+			return this;
 		}
 	});
 
@@ -367,7 +381,7 @@
 				this.element = $( element ).data( this.widgetName, this );
 				//options的参数使用了metadata的插件获取class中的{widgetName:{option:1}}信息
 				this.options = $.extend( true, {},
-					this.options,
+					this.options,this._parseStyle(),
 					$.metadata && $.metadata.get( element )[ this.widgetName ],
 					options );
 
@@ -380,7 +394,7 @@
 				this._init();
 			}
 		},
-
+		_parseStyle:function(){return {};},
 		_render: function() {},
 		_init: function() {},
 		/**
