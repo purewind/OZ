@@ -113,7 +113,7 @@ var ozlog = (function($){
 		if(unInit) init();
 		if(ozlog[arguments[0] + "Enable"] && visible){
 			var args = Array.prototype.slice.call(arguments, 1);
-			var html = String.format(msgTpl,(++num),arguments[0],String.format.apply(null,args));
+			var html = msgTpl.format((++num),arguments[0],String.format.apply(null,args));
 			if(desc){
 				content.prepend(html);
 				content.attr("scrollTop",0);
@@ -174,9 +174,3 @@ var ozlog = (function($){
 		}
 	};
 })(jQuery);
-String.format=function(format){
-    var args = Array.prototype.slice.call(arguments, 1);
-    return format.replace(/\{(\d+)\}/g, function(m, i){
-        return args[i];
-    });
-};
