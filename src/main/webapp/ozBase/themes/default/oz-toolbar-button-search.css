@@ -1,0 +1,75 @@
+/**
+ * 工具条中搜索控件，fc为form control的缩写
+ * 作者：dragon 2010-07-21
+ */
+.oz-tb .oz-btn .oz-fc-search{
+	background-color:#FFFFFF;
+	border-color:#8A9AA9;
+	border-width:1px;
+	border-style:solid;
+	padding:0 0 0 0;
+	margin:1px 8px 0 0;
+	_margin-right:0;/*IE fix*/
+	height:18px;
+	line-height:18px;
+	overflow:hidden;
+}
+.oz-fc-advanceSearch{
+	width:138px;
+}
+.oz-fc-search *{
+	margin:0;
+	padding:0;
+}
+.oz-fc-search input{
+	margin:2px 2px 0 2px;
+	padding:0px 0 0 0px;
+	border:0;
+	width:150px;
+	height:16px;
+	float:left;
+}
+.oz-fc-search span{
+	display:block;
+	width:18px;
+	height:18px;
+	line-height:18px;
+	margin-top:0px;
+	float:left;
+}
+/* 按钮的图片 */
+.oz-fc-search span.searchIcon{
+	background-image:url(images/toolbar-btn-search.png);
+	background-repeat:no-repeat;
+	background-color:gray;
+}
+/* 按钮的常规状态 */
+.oz-fc-search span.simple{
+	background-position:0 0;
+}
+.oz-fc-search span.advance{
+	background-position:-18px 0;
+}
+.oz-fc-search span.clean{
+	background-position:-36px 0;
+}
+/* 按钮的鼠标悬停状态 */
+.oz-fc-search span.overSimple{
+	background-position:0 -18px;
+}
+.oz-fc-search span.overAdvance{
+	background-position:-18px -18px;
+}
+.oz-fc-search span.overClean{
+	background-position:-36px -18px;
+}
+/* 按钮的鼠标点击状态 */
+.oz-fc-search span.clickSimple{
+	background-position:0 -36px;
+}
+.oz-fc-search span.clickAdvance{
+	background-position:-18px -36px;
+}
+.oz-fc-search span.clickClean{
+	background-position:-36px -36px;
+}
