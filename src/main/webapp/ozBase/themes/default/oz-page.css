@@ -3,292 +3,43 @@
  * 作者：dragon 2010-07-21
  */
 
-/** 页面布局表格 */
-.oz-page{width:auto;}
-.oz-page-table{
-	margin:0;
-	padding:0;
-	table-layout:fixed;
-	border:0;
-	width:100%;
-	height:100%;
+.oz-page{width: 100%;height: 100%;margin: 0px;padding: 0px;border:0;}
+.oz-page-top{width: 100%;height: 30px;overflow: hidden;
+	background-repeat: repeat-x;background-image:url(images/page/toolbar_bg.gif);
 }
 
-/**** 工具条样式配置--开始 ****/
-/* 放置工具条的表格行 */
-.oz-page-tb-tr{
-	height: 30px;
-	overflow:hidden;
-}
+/* 视图的相关设置 */
+.oz-page-center{width: 100%;height: 1px;display: none;overflow: hidden;border:0;}
 
-/* 放置工具条的单元格 */
-.oz-page-tb-td{
-	border: 0px solid black;
-	text-align: left;
-	vertical-align: top;
-	overflow:hidden;
+/* 树视图的相关设置:所有容器的overflow必须设为hidden，否则resize后撑爆*/
+.oz-page-center-tree{width: 180px;left: 0;height: 100%;overflow: hidden;position: absolute;}
+.oz-page-center-seperator{width: 5px;left: 180px;height: 100%;overflow: hidden;
+	cursor: e-resize;background-color: gray;position: absolute;
 }
+.oz-page-center-grid{left: 185px;height: 100%;width: 650px;overflow: hidden;position: absolute;}
 
-/* 放置工具条的div容器 */
-.oz-page-content-tbContainer{
-	margin: 0px;
-	padding: 0px;
-	width: 100%;
-	height: 30px;
-	background-repeat: repeat-x;
-	background-image:url(images/page/toolbar_bg.gif);
-	margin: 0px;
-	padding: 0px;		/*必须为0,否则IE6出现水平滚动条*/
-	position: fixed;	/*加上这句对IE6无效,而IE7,FF则可固定工具条*/
-	z-index: 2;			/*与div.headTitle对应(在文件Form.css),避免上下滚动内容时div.headTitle遮住工具条*/
-	border:0px solid blue;
-	overflow:hidden;
-}
-/**** 工具条样式配置--结束 ****/
-
-/**** 内容区样式配置--开始 ****/
-/* 放置页面内容的表格行 */
-.oz-page-content-tr{
-	border: 0px solid black;
-	vertical-align:middle;
-	overflow:hidden;
-}
-
-/* 放置页面内容的单元格 */
-.oz-page-content-td{
-	border: 0;
-	text-align: left;
-	vertical-align: top;
+/* 表单的相关设置 */
+.oz-page-form{width: 100%;height: 1px;display: none;overflow: auto;text-align: left;}
+.oz-form{width: 100%;border:0px solid black;}
+.oz-form-title{
+	width: 800px;height: 35px;
+	font-size: 18px;font-weight:bold;color:#224D7E;
+	padding:10px 5px 5px 10px;
+	text-align: center;
+	vertical-align: bottom;
 	overflow: hidden;
 }
-
-/* 内容区放置grid的div容器 */
-.oz-page-content-gridContainer{
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	height: 100%;
-	border: 0;
-	text-align:left;
-	vertical-align: top;
-	overflow: hidden;
-	display: block;
+.oz-form-fields{width: 100%;}
+.oz-form-fields table{width: 800px;	margin: 0px 10px 10px 10px;
+	border-color: #76ABD3;border-style: solid;border-width: 1px;background-color: white;
 }
-
-/* 内容区放置grid的单元格(带树时使用) */
-.oz-page-content-grid-td{
-	margin: 0px;
-	padding: 0px;
-	border: 0px solid black;
-	text-align:left;
-	vertical-align: top;
-	/*display:block;*/
-}
-
-/* 内容区放置tree的单元格(带树时使用) */
-.oz-page-content-tree-td{
-	margin: 0;
-	padding: 0;
-	border: 0;
-	text-align:left;
-	vertical-align:top;
-	width: 180px;
-}
-
-/* tree和grid间的分隔条(带树时使用) */
-.oz-page-content-seperator-td{
-	margin: 0px;
-	padding: 0px;
-	width: 5px;
-	border: 0;
-	background-repeat: repeat-y;
-	background-image: url(images/page/seperator.gif);
-	/*background-color:red;*/
-	font-size:1px;
-}
-
-/* 内容区放置tree的div容器(带树时使用) */
-.oz-page-content-treeContainer{
-	background-color:#F3F7FA;
-	margin: 0px;
-	padding: 0px;
-	width: 100%;
-	height: 100%;
-	border: 0px solid black;
-	text-align:left;
-	overflow: auto;
-}
-/**** 内容区样式配置--结束 ****/
-
-/**** 表单样式配置--开始 ****/
-/* 包含整个表单所有信息的表格 */
-.oz-page-formTable{
-	margin: 0px 0px 0px 5px;
-	padding: 0px;
-	width: 600px;
-	height: 100%;
-	vertical-align: top;
-	border-color: #76ABD3;
-	border-style: solid;
-	border-width:1px 0px 0px 0px;
-}
-.oz-page-formContainer{
-	margin: 0px 0px 0px 0px;
-	padding: 0px 0px 0px 0px;
-	width: 600px;
-	height: 100%;
-	border: 0px solid blue;
-	vertical-align: top;
-	/*background-color:#F2F2F3;*/
-	overflow:auto;
-}
-/* 大标题的表格行 */
-.oz-page-title-tr{
-	margin: 0px;
-	padding: 0px;
-	height: 50px;
-	border: 0px solid black;
-	vertical-align: top;
-}
-/* 大标题的单元格 */
-.oz-page-title-td{
-	border: 0px solid black;
-	text-align:left;
-	vertical-align: top;
-}
-
-/* 大标题的div容器 */
-.oz-page-titleContainer{
-	margin: 5px;
-	padding: 5px 0px 0px 2px;
-	width: 100%;
-	height: 30px;
-	border: 0px solid black;
-	text-align:left;
-	overflow: hidden;
-	font-size: 18px;
-	font-weight:bold;
-	font-style: italic;
-	color:#224D7E;
-	border-bottom:1px solid #F2F2F2;
-}
-/* 大标题的单元格 */
-.oz-page-form-td{
-	border: 0px solid black;
-	text-align:left;
-	vertical-align: top;
-	padding: 0px 0px 0px 0px;
-}
-/* 表单form标签 */
-.oz-form{
-	padding: 0px;
-	margin: 0px;
-	width: 100%;
-	border:0px solid black;
-}
-
-/* 表单描述性信息的容器 */
-.oz-form-headInfo{
-	width: 100%;
-	height: 27px;
-	line-height: 27px;
-	border: 0px solid blue;
-	padding: 0px;
-	overflow: hidden;
-	background-repeat: repeat-x;
-	background-image: url(images/page/form_headInfo_bg.jpg);
-	border-color: #76ABD3;
-	border-style: solid;
-	border-width:0px 1px 0px 1px;
-}
-
-/* 表单左边的描述性信息 */
-.oz-form-headInfo .oz-form-headInfo-left{
-	height: 27px;
-	line-height: 27px;
-	text-align: left;
-	border:0px solid black;
-	float:left;
-	padding-left:12px;
-	background-repeat: no-repeat;
-	background-image: url(images/page/form_headInfo_left_bg.jpg);
-	font-weight:bold;
-}
-
-/* 表单右边的描述性信息(通常为创建信息) */
-.oz-form-headInfo .oz-form-headInfo-right{
-	height: 27px;
-	line-height: 27px;
-	text-align: right;
-	border:0px solid black;
-	float:right;
-	padding-right:8px;
-}
-
-/* 包含表单属性域的table */
-.oz-form-fieldsTable{
-	width: 100%;
-	background-color:#F4F6F9;
-	border-color: #76ABD3;
-	border-style: solid;
-	border-width:0px 1px 1px 1px;
-}
-.oz-form-emptyTR{
-	height: 2px;
-	line-height:2px;
-}
-
-/* 表单内部的分隔条 */
-.oz-form-separator{
-	width: 100%;
-	height: 8px;
-	line-height:5px;
-	border:0px solid blue;
-}
-/* 表单内部页签的div容器 */
-.oz-form-tabsContainer {
-	width: 100%;
-	height: 200px;
-	border:1px solid black;
-	text-align: left;
-}
-
-.oz-form-label{
-	color:#195775;
-	text-align: right;
-	vertical-align: middle;
-	padding-right: 2px;
-}
-
-.oz-form-topLabel{
-	color:#195775;
-	text-align: right;
-	vertical-align: top;
-	padding-right: 2px;
-	padding-top: 2px;
-}
-
-.oz-property {
-	vertical-align: top;
-}
-
-.oz-property input {
-	width: 100%;
-	height:20px;
-}
-
-.oz-property select {
-	width: 100%;
-}
-
-.oz-property textarea {
-	width: 100%;
-	padding-left: 2px;
-	padding-top: 2px;
-	text-align: left;
-	overflow: auto;
-}
-
+.oz-form-emptyTR{height: 2px;line-height:2px;}
+.oz-form-label{color:#195775;text-align: right;vertical-align: middle;padding-right: 2px;}
+.oz-form-topLabel{color:#195775;text-align: right;vertical-align: top;padding-right: 2px;padding-top: 2px;}
+.oz-property{vertical-align: top;}
+.oz-property input{width: 100%;height: 20px;}
+.oz-property select{width: 100%;}
+.oz-property textarea{width: 100%;padding-left: 2px;padding-top: 2px;text-align: left;overflow: auto;height: 80px;}
 .oz-form-field{
 	background: #FFFFFF;
 	border-bottom: 1px solid #B0D7F2;
@@ -298,7 +49,6 @@
 	color:#000066;
 	text-decoration:none;
 }
-
 .oz-form-zdField{
 	background: #DCDCDC;
 	border-bottom: 1px solid #D4D0C8;
@@ -308,7 +58,6 @@
 	color:#000066;
 	text-decoration:none;
 }
-
 .oz-form-btField{
 	background: #E8F3F9;
 	border-bottom: 1px solid #B0D7F2;
@@ -317,286 +66,6 @@
 	border-top:1px solid #3881B2; 
 	color:#000066;
 	text-decoration:none;
-}
-
-/**** 表单样式配置--结束 ****/
-/*定义表单水平对齐状态,默认左对齐,如果改为中间或右对齐,则.oz-form-title-warp也要修改,见说明.*/
-.oz-form-align{
-	text-align:left; /*左对齐(left),为中间(center),右对齐(right)*/
-}
-/*表单整个宽度*/
-.oz-form-pageWidth{
-	width:720px; /*默认720px,适用两列信息*/
-}
-.oz-form-tabPanel{
-	width:720px; /*默认720px,适用两列信息*/
-	margin-top:5px;
-	margin-left:6px;
-	_width:732px; /*解决IE的宽度bug*/
-}
-.oz-form-tabWidth{
-	width:730px; /*默认720px,适用两列信息*/
-}
-/*表单标题背景*/
-.oz-form-title-warp{
-	/*默认左对齐背景*/
-	background-image:url(images/page/title-warpBg.jpg); 
-	/*中间或右对齐背景
-	background-image:url(images/page/title-warpBgCR.jpg); */
-	background-repeat:no-repeat;
-	height:46px; 
-	background-position: left bottom;
-	vertical-align:bottom;
-}
-/*标题文字*/
-.oz-page-title-text{
-	margin-top:10px;
-	font-size:16px; 
-	font-weight:bold; 
-	color:#1D436D; 
-	text-indent:10px; 
-	vertical-align:bottom;
-}
-.oz-page-subtitle-text{
-	font-size:12px;
-	font-weight:bold;	 
-	text-indent:10px; 
-	vertical-align:bottom;
-}
-/*标题表单右边信息文字宽度*/
-.oz-page-title-infoWidth{
-	margin-top:20px;
-	width:420px;
-	vertical-align:bottom; 
-	text-align:right;
-}
-.oz-page-form-wrap{
-	margin:6px;
-	clear:both; 
-}
-/*解决Form里面的textarea文字自动换行*/
-.oz-page-form-wrap table{table-layout:fixed;}
-
-/*表单边颜色和背景颜色 */
-.oz-page-form-tableBorder{
-	border:1px solid #76ABD3; 
-	background-color:#FFFFFF;
-	padding:5px; 
-	clear:both; 
-	
-}
-
-
-/*视图整个宽度***********************************/
-.oz-view-pageWidth{
-	width:100%; /*默认100%*/
-}
-/*视图标题背景*/
-.oz-view-title-warp{
-	background-image:url(images/page/title-warpBg.jpg); 
-	background-repeat:no-repeat; 
-	height:30px; 
-	background-position: left top;
-	vertical-align:bottom;
-}
-.oz-view-titleBg{
-	border-bottom:1px solid #C3D599;;
-}
-
-/*简易滚动样式***************************/
-.oz-page-overflow{
-	position:absolute;
-	width:100%;
-	height:100%;
-	overflow: auto;
-}
-.oz-tab{
-	overflow: auto;
-} 
-/**设置Tab Iframe*/
-.oz-tab-iframe{
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-} 
-.oz-page-tab_IW{
-/*.oz-form-pageWidth宽度为720*/
-	width: 98%;
-} 
-/*卡项中的标题背景*/
-.oz-page-tabTitleTopBg{
-	background-image:url(images/page/title_topbg.gif); 
-	border:1px solid #ADD5EE; 
-	height:18px; 
-	line-height:18px; 
-	text-indent:5px; 
-	font-weight:bold; 
-	color:#006699;
-}
-
-.oz-form-tab-content-header{
-	height:24px;
-	padding-left: 8px;	
-	background-color:#D0D0D0;
-	font-weight:bold;
-}
-/*隔开样式,有4个方向*/
-.oz-page_partitionTop{
-	margin-top:5px;
-}
-.oz-page_partitionRight{
-	margin-right:5px;
-}
-.oz-page_partitionBottom{
-	margin-bottom:5px;
-}
-.oz-page_partitionLeft{
-	margin-left:5px;
-}
-
-/*空白按钮*/
-.form-button-default{
-	background-image:url(images/page/button-default.gif);
-	border:0px;
-	width:62px; 
-	height:21px;
-}
-/*按钮背景*/
-.oz-page-button-tabbg1{
-	border:0px;
-	background-image:url(images/page/button-tabbg1.gif); 
-	width:56px; 
-	height:20px; 
-	margin-right:4px;
-	cursor:pointer;
-}
-.oz-page-button-tabbg2{
-	border:0px;
-	background-image:url(images/page/button-tabbg2.gif); 
-	width:68px; 
-	height:20px;
-	margin-right:4px;
-	cursor:pointer;
-}
-.oz-page-button-tabbg3{
-	border:0px;
-	background-image:url(images/page/button-tabbg3.gif);
-	width:80px;
-	height:20px; 
-	margin-right:4px;
-	cursor:pointer;
-}
-.oz-page-button-tabbg4{
-	border:0px;
-	background-image:url(images/page/button-tabbg4.gif);
-	width:135px;
-	height:20px; 
-	margin-right:4px;
-	cursor:pointer;
-}
-.oz-page-button2-tabbg1{
-	border:0px;
-	background-image:url(images/page/button2-tabbg1.gif); 
-	width:56px; 
-	height:20px; 
-	margin-right:4px;
-	cursor:pointer;
-}
-.oz-page-button2-tabbg2{
-	border:0px;
-	background-image:url(images/page/button2-tabbg2.gif); 
-	width:68px; 
-	height:20px;
-	margin-right:4px;
-	cursor:pointer;
-}
-.oz-page-button2-tabbg3{
-	border:0px;
-	background-image:url(images/page/button2-tabbg3.gif); 
-	width:80px;
-	height:20px; 
-	margin-right:4px;
-	cursor:pointer;
-}
-/*弹出窗口树的边框样式*/
-.form-dlg-treeDiv{
-	width:100%; height:100%;
-	background-color:#FFFFFF; overflow:auto; border:1px solid #c3daf9;
-}
-/*对话框中的添加、全添加、删除等...*/
-.dlg_add{
-	background-image:url(images/select/select_add.gif); width:59px; height:19px; border:0px; cursor:pointer;
-}
-.dlg_all_add{
-	background-image:url(images/select/select_all_add.gif); width:59px; height:19px; border:0px;cursor:pointer;
-}
-.dlg_del{
-	background-image:url(images/select/select_del.gif); width:59px; height:19px; border:0px;cursor:pointer;
-}
-.dlg_all_del{
-	background-image:url(images/select/select_all_del.gif); width:59px; height:19px; border:0px;cursor:pointer;
-}
-/*换行*/
-.oz-view-hh{
-	word-wrap: break-word; 
-	word-break: break-all;
-	overflow: auto ;
-	overflow-x:hidden;
-}
-/* 用CSS解决PRE的换行问题 */
-.oz-view-pre {
-	white-space: pre-wrap;      /* css-3 */
-	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
-	white-space: -pre-wrap;     /* Opera 4-6 */
-	white-space: -o-pre-wrap;   /* Opera 7 */
-	word-wrap: break-word;      /* Internet Explorer 5.5+ */
-}
-
-/*树中的视图边框和背景*/
-.oz-tree-wrap{
-	border-top:1px solid #7F9DB9;
-	border-right:1px solid #7F9DB9;
-	border-bottom:1px solid #7F9DB9;
-	border-left:1px solid #7F9DB9;
-	background-color:#F8FAFD;
-}
-/*视图中的搜索样式*/
-.oz-view-search-bg{
-	width:100%;
-	background-color:#F8FAFD;
-	background-image:url(images/page/egd-view-search-bg.png); 
-	border-bottom:1px solid #BAD1E0;
-	background-position:bottom;
-	background-repeat:repeat-x;
-}
-.oz-view-search-toolbarBg{
-	width:100%;
-	height:26px;
-	line-height:26px;
-	background-color:#EDEEEF;
-	border-bottom:1px solid #E0DEE0;
-}
-.search-startSearch{
-	margin-top:3px;
-	margin-left:6px;
-	margin-right:6px;
-	width:73px;
-	height:19px;
-	background-image:url(images/page/startSearch.gif);
-	background-repeat:no-repeat;
-	float:left; 
-	cursor:pointer;
-}
-.search-cleanCondition{
-	margin-top:3px;
-	margin-left:6px;
-	margin-right:6px;
-	width:73px;
-	height:19px;
-	background-image:url(images/page/cleanCondition.gif);
-	background-repeat:no-repeat; 
-	float:left; 
-	cursor:pointer;
 }
 /*日期+时间*/
 .oz-dateTimeField{
@@ -629,4 +98,10 @@
   	cursor: pointer;
 	background-position: 99% center;
 	border:1px solid #74a6d5;
+}
+
+/* 表单的页签相关设置 */
+.oz-form-tabs{width: 100%;}
+.oz-form-tabs .border{width: 800px;	margin: 0px 10px 10px 10px;min-height:30px;
+	border-color: #76ABD3;border-style: solid;border-width: 1px;background-color: white;
 }
