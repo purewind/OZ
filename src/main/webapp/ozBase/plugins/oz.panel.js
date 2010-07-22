@@ -43,53 +43,49 @@
 			var el = this.element;
 			var opts = this.options;
 			var self = this;
-			this.panel = this.element.addClass("panel-body").wrap('<div class="oz-panel"></div>').parent();
-			this.body = this.element;
+			this.panel = this.element.addClass("panel-body").wrap('<div class="oz-panel"></div>').parent().css(opts.style).addClass(opts.cls);
+			this.body = this.element.addClass(opts.bodyCls);
 			if (opts.title && !opts.noheader){
-				function onToggle(event){
-					if ($(this).hasClass('panel-tool-expand')){
-						self.expand(true);
-					} else {
-						self.collapse(true);
-					}
-					return false;
-				}
-				
-				function onMin(){
-					self.minimize();
-					return false;
-				}
-				
-				function onMax(){
-					if ($(this).hasClass('panel-tool-restore')){
-						self.restore();
-					} else {
-						self.maximize();
-					}
-					return false;
-				}
-				
-				function onClose(){
-					self.close();
-					return false;
-				}
-				
-				var header = $('<div class="panel-header"><div class="panel-title">'+opts.title+'</div></div>').prependTo(this.panel);
+				var header = $('<div class="panel-header"><div class="panel-title">'+opts.title+'</div></div>').addClass(opts.headerCls).prependTo(this.panel);
 				if (opts.iconCls){
 					header.find('.panel-title').addClass('panel-with-icon');
 					$('<div class="panel-icon"></div>').addClass(opts.iconCls).appendTo(header);
 				}
 				var tool = $('<div class="panel-tool"></div>').appendTo(header);
 				if (opts.closable){
+					function onClose(){
+						self.close();
+						return false;
+					}
 					$('<div class="panel-tool-close"></div>').appendTo(tool).bind('click.'+this.widgetName, onClose);
 				}
 				if (opts.maximizable){
+					function onMax(){
+						if ($(this).hasClass('panel-tool-restore')){
+							self.restore();
+						} else {
+							self.maximize();
+						}
+						return false;
+					}
 					$('<div class="panel-tool-max"></div>').appendTo(tool).bind('click.'+this.widgetName, onMax);
 				}
 				if (opts.minimizable){
+					function onMin(){
+						self.minimize();
+						return false;
+					}
 					$('<div class="panel-tool-min"></div>').appendTo(tool).bind('click.'+this.widgetName, onMin);
 				}
 				if (opts.collapsible){
+					function onToggle(event){
+						if ($(this).hasClass('panel-tool-expand')){
+							self.expand(true);
+						} else {
+							self.collapse(true);
+						}
+						return false;
+					}
 					$('<div class="panel-tool-collapse"></div>').appendTo(tool).bind('click.'+this.widgetName, onToggle);
 				}
 				if (opts.tools){
@@ -162,10 +158,6 @@
 				left: opts.left,
 				top: opts.top
 			});
-			panel.css(opts.style);
-			panel.addClass(opts.cls);
-			pheader.addClass(opts.headerCls);
-			pbody.addClass(opts.bodyCls);
 			if (!isNaN(opts.width)){
 				if ($.boxModel == true){
 					panel.width(opts.width - (panel.outerWidth() - panel.width()));
@@ -197,7 +189,8 @@
 		},
 		setTitle:function(title){
 			this.options.title = title;
-			this.header.find('div.panel-title').html(title);
+			this.header.find('>div.panel-title').html(title);
+			this._trigger("setTitle")
 		},
 		getSize:function(){
 			return {
@@ -292,6 +285,9 @@
 		},
 		close :function (forceClose){
 			var opts = this.options;
+			if(opts.closed === true){
+				return;
+			}
 			if (forceClose != true){
 				if (this._trigger("beforeClose") === false) return;
 			}
@@ -301,6 +297,9 @@
 		},
 		open:function ( forceOpen){
 			var opts = this.options;
+			if(opts.closed === false){
+				return;
+			}
 			if (forceOpen != true){
 				if (this._trigger("beforeOpen") === false) return;
 			}
@@ -310,7 +309,6 @@
 			if (opts.maximized == true) this.maximize();
 			if (opts.minimized == true) this.minimize();
 			if (opts.collapsed == true) this.collapse();
-			
 			if (!opts.collapsed){
 				this._loadData();
 			}
@@ -326,8 +324,8 @@
 		},
 		_loadData:function(){
 			var opts = this.options;
-			var self = this;
 			if (opts.href && (!this.isLoaded || !opts.cache)){
+				var self = this;
 				this.isLoaded = false;
 				var pbody = this.body;
 				pbody.html($('<div class="panel-loading"></div>').html(opts.loadingMessage));

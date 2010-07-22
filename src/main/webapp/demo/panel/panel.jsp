@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>OZ Core</title>
+        <title>OZ Panel</title>
         <link rel="stylesheet" type="text/css" href="../../ozBase/easyui/themes/icon.css">
 		<link rel="stylesheet" type="text/css" href="../../ozBase/themes/default/oz-panel.css">
 		<script type="text/javascript" src="../../ozBase/jquery-1.4.2.min.js"></script>

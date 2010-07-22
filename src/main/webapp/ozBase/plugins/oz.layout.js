@@ -36,7 +36,8 @@ $.widget("oz.splitbar",$.oz.mouse,{
 		this.maxSize = this.options.maxSize||500;
 		this.minSize = this.options.minSize||10;
 		
-		this.element.addClass("x-layout-split oz-layout-split-"+this.options.region).disableSelection();
+		this.element.addClass("layout-split layout-split-"+this.options.region).disableSelection();
+				
 		//设置方向样式
 		if(this.orientation == POS.HORIZONTAL){
 	        this.element.addClass("layout-split-h");
@@ -55,7 +56,7 @@ $.widget("oz.splitbar",$.oz.mouse,{
 		this.proxy.css(this.element.position()).css({visibility:"visible",display: "block"})
 		.width(this.element.width()).height(this.element.height());
 		//显示遮罩
-		this.mark = $("<div></div>").addClass("oz-drag-overlay").insertAfter(this.resizeEl).disableSelection()
+		this.mark = $("<div></div>").addClass("layout-mask oz-drag-overlay").insertAfter(this.element).disableSelection()
 		.css({visibility:"visible",display: "block",width:$(window).width(),height: $(window).height()})
 		.show();
 		//记录其实位置
@@ -184,7 +185,7 @@ $.widget("oz.layoutRegion",$.oz.panel,{
 		var self = this;
 		this.margins = parseMargins(this.options.margins);
 		this.cmargins = parseMargins(this.options.cmargins);
-		this.panel.addClass("oz-layout-panel");
+		this.panel.addClass("oz-layout-region");
 		this.layout = this.options.layout;
 		
 		if(this.options.split == true){
@@ -270,7 +271,7 @@ $.widget("oz.layout",{
                 border: "none"
             });
         }
-        el.addClass("oz-layout layout-body");
+        el.addClass("oz-layout oz-layout-body");
         el.css({
         	position:"relative",
 	    	overflow:"hidden",

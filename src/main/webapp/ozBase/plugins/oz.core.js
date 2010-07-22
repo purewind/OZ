@@ -4,6 +4,10 @@
 		return;
 	}
 
+	$(function(){
+		$.browser.msie && $.browser.version=="6.0" && $("body").addClass("oz-ie");
+	})
+	
 	//实现oz的静态方法
 	$.extend($.oz, {
 		version: "1.0.0",
@@ -141,6 +145,11 @@
 			this.filter('.' + c2).removeClass(c2).addClass(c1);
 			c1Elements.removeClass(c1).addClass(c2);
 			return this;
+		},
+		offsetsTo:function(el){
+			var o = this.position();
+	        var e = el.position();
+	        return [o.left-e.left,o.top-e.top];
 		}
 	});
 
