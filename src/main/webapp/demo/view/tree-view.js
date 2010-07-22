@@ -4,12 +4,15 @@ jQuery(function($){
 
 var thisPage = {
 	init: function(){
-		//设置grid高度为充满整个屏幕
-		$("#page-center").height($("#page").height()-$("#page-top").height()).show();
+		var ids="#page-center,#page-center-tree,#page-center-seperator,#page-center-grid";
+		//调整默认的高度、宽度
+		$(ids).height($("#page").height()-$("#page-top").height()).show()
+		$("#page-center-grid").width($("#page").width()-$("#page-center-tree").width()-$("#page-center-seperator").width());
 	
 		//窗口大小变动后自动调整grid的
 		$(window).resize(function(){
-			$("#page-center").height(10).height($("#page").height()-$("#page-top").height());
+			$(ids).height(10).height($("#page").height()-$("#page-top").height());
+			$("#page-center-grid").width($("#page").width()-$("#page-center-tree").width()-$("#page-center-seperator").width());
 			$("#grid").datagrid("resize");
 		});
 		

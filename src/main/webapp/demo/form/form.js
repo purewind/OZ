@@ -9,7 +9,7 @@ var thisPage = {
 	
 		//窗口大小变动后自动调整form高度
 		$(window).resize(function(){
-			$("#page-center").height(10).height($("#page").height()-$("#page-top").height());
+			$("#page-center").height(10).height($("#page").height()-$("#page-top"));
 		});
 		
 		thisPage.initTB();
