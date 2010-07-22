@@ -48,58 +48,64 @@
 			if (opts.title && !opts.noheader){
 				var header = $('<div class="panel-header"><div class="panel-title">'+opts.title+'</div></div>').addClass(opts.headerCls).prependTo(this.panel);
 				if (opts.iconCls){
-					header.find('.panel-title').addClass('panel-with-icon');
+					header.find('>.panel-title').addClass('panel-with-icon');
 					$('<div class="panel-icon"></div>').addClass(opts.iconCls).appendTo(header);
 				}
 				var tool = $('<div class="panel-tool"></div>').appendTo(header);
+				
 				if (opts.closable){
-					function onClose(){
-						self.close();
-						return false;
-					}
-					$('<div class="panel-tool-close"></div>').appendTo(tool).bind('click.'+this.widgetName, onClose);
+					opts.tools.push({
+						iconCls:"panel-tool-close",
+						handler:function(e){
+							this.close();
+							return false;
+						}
+					});
 				}
 				if (opts.maximizable){
-					function onMax(){
-						if ($(this).hasClass('panel-tool-restore')){
-							self.restore();
-						} else {
-							self.maximize();
+					opts.tools.push({
+						iconCls:"panel-tool-max",
+						handler:function(e){
+							if ($(e.target).hasClass('panel-tool-restore')){
+								this.restore();
+							} else {
+								this.maximize();
+							}
+							return false;
 						}
-						return false;
-					}
-					$('<div class="panel-tool-max"></div>').appendTo(tool).bind('click.'+this.widgetName, onMax);
+					});
 				}
 				if (opts.minimizable){
-					function onMin(){
-						self.minimize();
-						return false;
-					}
-					$('<div class="panel-tool-min"></div>').appendTo(tool).bind('click.'+this.widgetName, onMin);
+					opts.tools.push({
+						iconCls:"panel-tool-min",
+						handler:function(e){
+							this.minimize();
+							return false;
+						}
+					});
 				}
 				if (opts.collapsible){
-					function onToggle(event){
-						if ($(this).hasClass('panel-tool-expand')){
-							self.expand(true);
-						} else {
-							self.collapse(true);
+					opts.tools.push({
+						iconCls:"panel-tool-collapse",
+						handler:function(e){
+							if ($(e.target).hasClass('panel-tool-expand')){
+								this.expand(true);
+							} else {
+								this.collapse(true);
+							}
+							return false;
 						}
-						return false;
-					}
-					$('<div class="panel-tool-collapse"></div>').appendTo(tool).bind('click.'+this.widgetName, onToggle);
+					});
 				}
 				if (opts.tools){
-					for(var i=opts.tools.length-1; i>=0; i--){
+					for(var i=0; i<opts.tools.length; i++){
 						var t = $('<div></div>').addClass(opts.tools[i].iconCls).appendTo(tool);
 						if (typeof opts.tools[i].handler  == "function"){
 							t.bind('click.'+this.widgetName, $.proxy(opts.tools[i].handler,this));
 						}
 					}
 				}
-				tool.find('div').hover(
-					function(){$(this).addClass('panel-tool-over');},
-					function(){$(this).removeClass('panel-tool-over');}
-				);
+				tool.find('>div').hoverClass('panel-tool-over');
 				this.body.removeClass('panel-body-noheader');
 			} else {
 				this.body.addClass('panel-body-noheader');
@@ -113,13 +119,11 @@
 				this.header.addClass('panel-header-noborder');
 				this.body.addClass('panel-body-noborder');
 			}
-			this.panel.bind('_resize', function(){
-				var opts = self.options;
-				if (opts.fit == true){
+			if (opts.fit == true){
+				this.panel.bind('_resize.'+this.widgetName, function(){
 					self.resize();
-				}
-				return false;
-			});
+				});
+			}
 		},
 		_init:function(){
 			var opts = this.options;
@@ -295,7 +299,7 @@
 			opts.closed = true;
 			this._trigger("close");
 		},
-		open:function ( forceOpen){
+		open:function (forceOpen){
 			var opts = this.options;
 			if(opts.closed === false){
 				return;
@@ -320,7 +324,6 @@
 			}
 			this.base();
 			this.panel.remove();
-			
 		},
 		_loadData:function(){
 			var opts = this.options;

@@ -67,21 +67,19 @@
      		
      		
      		this.scrollLeft = $(".tabs-scroller-left",this.tbct).disableSelection().hoverClass("tabs-scroller-left-over")
-     		.bind("click",$.proxy(this,"_onScrollLeft"));
+     		.bind("click."+this.widgetName,$.proxy(this,"_onScrollLeft"));
      		this.scrollRight = $(".tabs-scroller-right",this.tbct).disableSelection().hoverClass("tabs-scroller-right-over")
-     		.bind("click",$.proxy(this,"_onScrollRight"));
+     		.bind("click."+this.widgetName,$.proxy(this,"_onScrollRight"));
      		
-			this.element.bind('_resize', function(){
-				var opts = self.options;
-				if (opts.fit == true){
+     		if (opts.fit == true){
+     			this.element.bind('_resize.'+this.widgetName, function(){
 					self.resize();
-					//激活当前活动窗口的调整事件
-					self.getActive()&&self.getActive().trigger('_resize');
-				}
-				return false;
-			});
+    				return false;
+    			});
+     		}
 		},
 		_init:function(){
+			var self = this,opts = this.options;
 			this.element.css('display','block');
 			this.resize();
 			var self = this;
@@ -133,10 +131,17 @@
 				body.height('auto');
 			}
 			panel.css('height', null);
+			
+			var f = this.getActive();
 			for ( var i = 0; i < this.options._tabs.length; i++) {
-				var tab = this.options._tabs[i];
-				tab.panel("option","doResize",true);
+				var p = this.options._tabs[i];
+				if(f == p){
+					p.panel('resize');
+				}else{
+					p.panel("option","doResize",true);
+				}
 			}
+			
 			this._autoScrollTabs();
 		},
 		add:function(config,active){
@@ -156,66 +161,66 @@
 				return;
 			}
 			var panel = $('<div></div>').attr('title', config.title).appendTo(this.body);
-			
 			this.options._tabs.push(panel);
-			
 			this._createTab(panel,config);
-			
 		},
-		close:function(tabId){
-			var o = this.findTab(tabId,true);
+		close:function(o){
+			if(typeof o =="string") o = this.findTab(o,true);
 			if(o){
-				var op = null;
-				var d = o.panel("option","opener");
-				if(d){
-					var op = this.activeTab(d);
-				}
-				if(!op){
-					if(this.options._tabs.length>0){
-						this.activeTab(this.options._tabs[0].panel("option","id"));
-					}
-				}
+				var op,d;
+				(d = o.panel("option","opener"))&& d && (op = this.activeTab(d));
+				!op && this.options._tabs.length > 0 && this.activeTab(this.options._tabs[0]);
 				o.remove();
 			}
 		},
-		findTab:function(tabId,remove){
-			for ( var i = 0; i < this.options._tabs.length; i++) {
+		closeAll:function(){
+			for (var i = this.options._tabs.length-1; i>=0 ; i--) {
 				var tab = this.options._tabs[i];
-				if(tab.panel("option","id")==tabId){
-					if (remove) {
-						this.options._tabs.splice(i, 1);
-					}
-					return tab;
+				if(tab.panel("option","closable")==true){
+					this.options._tabs.splice(i, 1);
+					tab.remove();
 				}
 			}
-			return null;
+			this.options._tabs.length > 0 && this.activeTab(this.options._tabs[0]);
 		},
-		activeTab:function(tabId){
-			var t = this.findTab(tabId);
-			if(t){
-				var a = this.getActive();
-				if(t==a) return;
-				if(a){
-					a.panel("close");
-					a.panel("option","tab").removeClass("tabs-strip-active");
-				};
-				t.panel("open");
-				t.panel("option","tab").addClass("tabs-strip-active");
-				if(t.panel("option","doResize")){
-					t.trigger('_resize');
-					t.panel("option","doResize",false);
+		closeOther:function(closeTab){
+			if(typeof closeTab =="string") closeTab = this.findTab(closeTab);
+			for (var i = this.options._tabs.length-1; i>=0 ; i--) {
+				var tab = this.options._tabs[i];
+				if(tab.panel("option","closable")==true || tab!=closeTab){
+					this.options._tabs.splice(i, 1);
+					tab.remove();
 				}
-				if(this.scrolling){
-		            this.scrollToTab(t);
-		        }
-				return t;
+			}
+			closeTab && this.activeTab(closeTab);
+		},
+		findTab:function(tabId,remove){
+			var self = this;
+			return this.find(function(tab,i,tabs){
+				var f = tab.panel("option","id")==tabId;
+				f&&remove&&tabs.splice(i, 1);
+				return f;
+			});
+		},
+		activeTab:function(tab){
+			if(typeof tab =="string") tab = this.findTab(tab);
+			if(tab){
+				var a = this.getActive();
+				a&&a.panel("close");
+				return tab.panel("open");
 			}
 			return null;
 		},
 		getActive:function(){
-			for ( var i = 0; i < this.options._tabs.length; i++) {
+			return this.find(function(tab){
+				return tab.panel("option","closed") != true;
+			})
+		},
+		find:function(fn){
+			var tabs = this.options._tabs;
+			for ( var i = 0; i < tabs.length; i++) {
 				var tab = this.options._tabs[i];
-				if(tab.panel("option","closed") != true){
+				if(fn(tab,i,tabs)){
 					return tab;
 				}
 			}
@@ -227,24 +232,25 @@
 				id: null,
 				iconCls:'',
 		        title: "无标题",
-		        content:'',
-		        opener: act?act.panel("option","id"):null,
 		        refresh: false,
-		        tabTip: '',
 		        selected:false,
 		        noheader:true,
 				closable: false,
 				height: 'auto',
-				width: 'auto'
+				width: 'auto',
+				closed:true,
+				fit:true
 		    },config);
 			
 			config.id = config.id || 'gen-tabs-panel' + _idSeed++;
 			
+			config.opener = act?act.panel("option","id"):null;
+					
 			var tabHtml =['<li><a class="tabs-strip-close" onclick="return false;"></a>',
 			                 '<a class="tabs-right" href="#" onclick="return false;"><em class="tabs-left">',
 			                 '<span class="tabs-strip-inner"><span class="tabs-strip-text '+config.iconCls+'\">'+config.title+'</span></span>',
 			                 '</em></a></li>'].join("");
-	        var tab = $(tabHtml).attr({title:config.tabTip}).insertBefore($("li:last",this.strip));
+	        var tab = $(tabHtml).attr({title:config.tabTip||config.title}).insertBefore($("li:last",this.strip));
 	        
 	        panel.panel(config);
 	        
@@ -254,7 +260,7 @@
 			}      
 			if(config.closable){
 				tab.addClass("tabs-strip-closable");
-				$(".tabs-strip-close",tab).bind("click.tabs",function(){
+				$(".tabs-strip-close",tab).bind("click."+this.widgetName,function(){
 					self.close(config.id);
 				})
 			}
@@ -268,19 +274,28 @@
 	        	}
 	        }
 			$.data(tab[0],"tabs.id",config.id);
-			tab.bind("click.tabs",function(){
-				var id = $(this).data("tabs.id");
-				self.activeTab(id);
-		     })
-		     
-			panel.bind("remove.panel", function(){tab.remove();});
+			tab.bind("click."+this.widgetName,function(){
+				self.activeTab(panel);
+		    });
+		    panel.bind("open.panel", function(){
+		    	tab.addClass("tabs-strip-active");
+		    	if(panel.panel("option","doResize")){
+		    		panel.panel('resize');
+		    		panel.panel("option","doResize",false);
+				};
+				if(self.scrolling){
+					self.scrollToTab(panel);
+		        };
+		    });
+			panel.bind("close.panel", function(){tab.removeClass("tabs-strip-active");});
+			panel.bind("remove.panel", function(){tab.remove();self._autoScrollTabs();});
 			panel.bind("disable.panel", function(){tab.addClass("oz-item-disabled")});
 			panel.bind("enable.panel", function(){tab.removeClass("oz-item-disabled")});
 			panel.bind("setTitle.panel",function(){$(".tabs-strip-inner>span",tab).text($(this).panel("option","title"));});
 			panel.panel("option","tab",tab);
-			
+			panel.panel("option","doResize",true);
+			this.activeTab(panel);
 			this._autoScrollTabs();
-			this.activeTab(config.id);
 			if(this.options._tabs.length==1){
 				this.resize();
 			}
@@ -316,11 +331,6 @@
 	            if(!this.scrolling){
 	                this.tbct.addClass('tabs-scrolling');
 	            }
-	            if ($.boxModel == true) {
-	            	stripWrap.css('left',2);
-				} else {
-					stripWrap.css('left',0);
-				}
 	            stripWrap.width(tw-this.scrollLeft.width()-this.scrollRight.width());
 	            this.scrolling = true;
 	            if(pos > (l-tw)){
