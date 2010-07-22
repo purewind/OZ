@@ -25,7 +25,7 @@ h1,h2,h3,h4,h5,h6{font-size:100%;}
 q:before,q:after{content:'';}
 input{
 	/*height:20px;*/
-	padding:2px 0px 0px 2px
+	padding:3px 0px 0px 2px;
 }
 select{
 	font-size:12px;
@@ -51,26 +51,8 @@ a:visited { text-decoration:none; COLOR:#000000; }
 a:active { text-decoration:none; COLOR:#000000; }
 a:hover { text-decoration:none; COLOR:#7D7B7B; }
 
-.oz-hidden{
-	display: none;
-}
+.oz-hidden{display: none;}
 /* body样式 */
-.oz-body{
-	overflow: hidden;
-	background-color: #DEEBF4;/*#ECE9D8*/;
-}
-/* 对话框的body样式 */
-.oz-body-dlg{
-	overflow: hidden;
-	background-color: #DFE7EF;
-}
-.oz-body-dlg fieldset{
-	padding:5px;
-}
+.oz-body{overflow: hidden;background-color: #DEEBF4;}
 /*数字字体*/
-.GeorgiaFont{
-	font-family:Georgia, Times New Roman, Times, serif;
-}
-.DivClear{
-	clear:both;
-}
+.GeorgiaFont{font-family:Georgia, Times New Roman, Times, serif;}

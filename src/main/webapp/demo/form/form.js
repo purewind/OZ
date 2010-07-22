@@ -4,11 +4,19 @@ jQuery(function($){
 
 var thisPage = {
 	init: function(){
+		//设置form高度为充满整个屏幕
+		$("#page-center").height($("#page").height()-$("#page-top").height()).show();
+	
+		//窗口大小变动后自动调整form高度
+		$(window).resize(function(){
+			$("#page-center").height(10).height($("#page").height()-$("#page-top").height());
+		});
+		
 		thisPage.initTB();
 	},
 	initTB: function(){
 		var tb = new OZ.TB({
-			id: 'tbContainer',
+			id: 'toolbar',
 		    buttons: ["|",
 			    {text: '新建', iconCls: 'oz-icon-new', disabled: true},
 			    {text: '保存', iconCls: 'oz-icon-save', handler: function(){

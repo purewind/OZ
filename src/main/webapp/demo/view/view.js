@@ -2,38 +2,25 @@ jQuery(function($){
 	thisPage.init();
 });
 
-var m = 200;
 var thisPage = {
 	init: function(){
+		//设置grid高度为充满整个屏幕
+		$("#page-center").height($("#page").height()-$("#page-top").height()).show();
+	
 		//窗口大小变动后自动调整grid的
 		$(window).resize(function(){
-			$("#gridContainerWraper").hide();
-			$("#gridContainerWraper").height(10);
-			$("#gridContainerWraper").height($("#TD01").height());
-			$("#gridContainerWraper").show();
-			$("#gridContainer").datagrid("resize");
-
-			/*
-			m=m+1;
-			//$("#gridContainer").datagrid("resize");
-			//$("#gridContainer").height(0);
-			$("#gridContainer").get(0).style.display="none";
-			$("#gridContainer").get(0).style.height="10px";
-			var h=$("#TD01").height();
-			ozlog.debug("resize1:" + $("#gridContainer").get(0).style.height + "--" + m);
-			//$("#gridContainer").height(h-10);
-			$("#gridContainer").get(0).style.height=(h-10)+"px";
-			$("#gridContainer").get(0).style.display="block";
-			ozlog.debug("resize2:" + $("#gridContainer").get(0).style.height + "--" + m);
-			*/
+			$("#page-center").height(10);
+			$("#page-center").height($("#page").height()-$("#page-top").height());
+			$("#grid").datagrid("resize");
 		});
 		
 		thisPage.initTB();
 		thisPage.initGrid();
+		//$("#page-center").show();
 	},
 	initTB: function(){
 		var tb = new OZ.TB({
-			id: 'tbContainer',
+			id: 'toolbar',
 		    buttons: ["|",
 			    {text: '新建', iconCls: 'oz-icon-new', disabled: true},
 			    {text: '保存', iconCls: 'oz-icon-save', handler: function(){
@@ -66,7 +53,7 @@ var thisPage = {
 		});
 	},
 	initGrid: function(){
-		$('#gridContainer').datagrid( {
+		$('#grid').datagrid( {
 			url: 'view.json',
 			idField: 'id',
 			frozenColumns: [[ 
@@ -92,7 +79,7 @@ var thisPage = {
 				alert(rowData.subject);
 			},
 			onLoadSuccess: function(){
-				//$("#gridContainer").datagrid("resize");
+				//$("#page-center").show();
 			}
 		});
 	}
