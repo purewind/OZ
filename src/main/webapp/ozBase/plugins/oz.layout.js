@@ -285,17 +285,14 @@ $.widget("oz.layout",{
 			east : $(".oz-layout-east:first",el).layoutRegion({region:"east",layout:this}),
 			west : $(".oz-layout-west:first",el).layoutRegion({region:"west",layout:this})
 		};
-		el.bind("_resize",
-				function() {
-		            if (o.fit == true) {
-		            	self.layout();
-		            }
-		            return false;
-		        });
-	
-		$(window).resize(function(){
-			self.layout();
-		});
+		
+		if (el[0].tagName == "BODY") {
+			$(window).resize(function(){
+				self.layout();
+			});
+		}else{
+			if (o.fit == true) {el.bind("_resize."+this.widgetName,function() {self.layout();return false;});}
+		}
 	},
 	_init:function(){
 		this.layout();

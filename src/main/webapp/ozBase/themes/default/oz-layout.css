@@ -115,3 +115,7 @@
     margin-left:-17px;
     background-image:url(images/layout-mini-bottom.gif);
 }
+
+.oz-splitbar-disabled,.oz-splitbar2-disabled{
+	cursor: default;
+}

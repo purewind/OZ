@@ -18,8 +18,7 @@
 					maximizable:true,
 					minimizable:true,
 					collapsible:true,
-					width:300,
-					height:300
+					fit:true
 				});
 				$("#panel2").panel({content:'<iframe scrolling="no" frameborder="0"  src="../view/view.htm" style="width:100%;height:100%;"></iframe>'});
 			}
@@ -29,8 +28,10 @@
 		</script>
 	</head>
 <body>
-	<div id="panel1">panel1</div>
-	<div style="position: absolute;left: 400px;top: 10px;width:500px;height:600px;border: 1px solid red;">
+	<div style="width:300px;height:300px;border: 1px solid red;">
+		<div id="panel1">panel1</div>
+	</div>
+	<div style="position: absolute;left: 400px;top: 10px;width:600px;height:600px;border: 1px solid red;">
 		<div id="panel2" class="{panel:{title:'功能菜单',maximizable:true,minimizable:true}}" style="width:500px;height:500px;">panel2</div>
 	</div>
 </body>

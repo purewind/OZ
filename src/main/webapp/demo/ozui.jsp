@@ -16,61 +16,44 @@
 		<script type="text/javascript" src="../ozBase/plugins/oz.layout.js"></script>
 		<script type="text/javascript" src="../ozBase/plugins/oz.tabs.js"></script>
 		<script>
-			function layout(){
-				//第一种方法
-				$("body").layout();
-				//$("#main-center").layout();
-				//第二种方法
-				//new $.oz.layout({},$("#main-center")[0]);
-			}
-			function tabs(){
-				$("#mainTabs").tabs();
-				
-			}
 			$(function(){
-				layout();
-				tabs();
+				$("body").layout();
+				$("#mainTabs").tabs();
+				$("#loading").hide();
 			});
-			function addView(){
+			
+			function addTab(id,title,src){
 				$("#mainTabs").tabs("add",{	
-					id:"View",
-					title:"view",
+					id:id,
+					title:title,
 					closable:true,
-					maximizable:true,
-					minimizable:true,
-					collapsible:true,
-					fit:true,
-					content:'<iframe scrolling="auto" frameborder="0"  src="view/view.htm" style="width:100%;height:100%;"></iframe>'
+					iconCls:"oz-icon-default",
+					content:'<iframe scrolling="auto" frameborder="0"  src="'+src+'" style="width:100%;height:100%;"></iframe>'
 				});
+			}
+			function addView(){
+				addTab("view","view","view/view.htm");
 			}
 			function addLayout(){
-				$("#mainTabs").tabs("add",{	
-					id:"layout",
-					title:"layout",
-					closable:true,
-					maximizable:true,
-					minimizable:true,
-					collapsible:true,
-					fit:true,
-					selected:true,
-					content:'<iframe scrolling="auto" frameborder="0"  src="layout/layout.jsp" style="width:100%;height:100%;"></iframe>'
-				});
+				addTab("layout","layout","layout/layout.jsp");
 			}
 			function addPanel(){
-				$("#mainTabs").tabs("add",{	
-					id:"panel",
-					title:"panel",
-					closable:true,
-					maximizable:true,
-					minimizable:true,
-					collapsible:true,
-					fit:true,
-					content:'<iframe scrolling="auto" frameborder="0"  src="panel/panel.jsp" style="width:100%;height:100%;"></iframe>'
-				});
+				addTab("panel","panel","panel/panel.jsp");
+			}
+			function addTabs(){
+				addTab("tabs","tabs","tabs/tabs.jsp");
+			}
+			function closeOther(){
+				$("#mainTabs").tabs("closeAll");
 			}
 		</script>
 	</head>
 <body class="{layout:{border:11}}">
+
+	<div id="loading" style="position: absolute;width: 100%;height: 100%;left: 0;top: :0;background-color: #FFF;z-index: 100;">
+		<div style="position:absolute; top:50%;margin-top:-10px;left: 50%;margin-left: -100px; ">loading...</div>
+	</div>
+
 	<div  id="jjj" class="oz-layout-north {layoutRegion:{split:true,margins:'0 0 5 0',height:60}}" style="background:#efefef;">
 		显示logo信息
 	</div>
@@ -84,20 +67,14 @@
 		<button onclick="addPanel();">addPanel</button><br/>
 		<button onclick="addLayout()">addLayout</button><br/>
 		<button onclick="addView()">addView</button><br/>
-		<button onclick="$('#mainTabs').tabs('close','panel');">close panel</button>
+		<button onclick="addTabs()">addTabs</button><br/>
+		<button onclick="closeOther()">closeOther</button><br/>
 	</div>
 	<div class="oz-layout-center {layoutRegion:{margins:'0 0 0 0',border:false}}" style="overflow: hidden;">
 		<div id="mainTabs" class="{tabs:{fit:true}}" style="display: none">
-			<div title="首页1" class="{panel:{title:'首页1',border:false,fit:true,iconCls:'oz-icon-firstTab'}}">欢迎页</div>
-			<div title="首页1" class="{panel:{title:'首页1',border:false,fit:true,iconCls:'oz-icon-firstTab'}}">欢迎页</div>
-			<div title="首页1" class="{panel:{title:'首页1',border:false,fit:true,iconCls:'oz-icon-firstTab'}}">欢迎页</div>
-			<div title="首页1" class="{panel:{title:'首页1',border:false,fit:true,iconCls:'oz-icon-firstTab'}}">欢迎页</div>
-			<div title="首页1" class="{panel:{title:'首页1',border:false,fit:true,iconCls:'oz-icon-firstTab'}}">欢迎页</div>
-			<div title="首页1" class="{panel:{title:'首页1',border:false,fit:true,iconCls:'oz-icon-firstTab'}}">欢迎页</div>
-			<div title="首页1" class="{panel:{title:'首页1',border:false,fit:true,iconCls:'oz-icon-firstTab'}}">欢迎页</div>
-			<div title="首页1" class="{panel:{title:'首页1',border:false,fit:true,iconCls:'oz-icon-firstTab'}}">欢迎页</div>
-			<div title="首页1" class="{panel:{title:'首页1',border:false,fit:true,iconCls:'oz-icon-firstTab'}}">欢迎页</div>
-			<div title="首页1" class="{panel:{title:'首页1',border:false,fit:true,iconCls:'oz-icon-firstTab'}}">欢迎页</div>
+			<div class="{panel:{title:'首页',border:false,fit:true,iconCls:'oz-icon-firstTab'}}" style="overflow: hidden;">
+				<iframe scrolling="auto" frameborder="0"  src="http://www.baidu.com" style="width:100%;height:100%;"></iframe>
+			</div>
 		</div>
 	</div>
 </body>
