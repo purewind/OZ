@@ -18,10 +18,6 @@
 	        doSize: true,
 	        noheader: false,
 	        content: null,
-	        collapsible: false,
-	        minimizable: false,
-	        maximizable: false,
-	        closable: false,
 	        collapsed: false,
 	        minimized: false,
 	        maximized: false,
@@ -52,51 +48,6 @@
 					$('<div class="panel-icon"></div>').addClass(opts.iconCls).appendTo(header);
 				}
 				var tool = $('<div class="panel-tool"></div>').appendTo(header);
-				
-				if (opts.closable){
-					opts.tools.push({
-						iconCls:"panel-tool-close",
-						handler:function(e){
-							this.close();
-							return false;
-						}
-					});
-				}
-				if (opts.maximizable){
-					opts.tools.push({
-						iconCls:"panel-tool-max",
-						handler:function(e){
-							if ($(e.target).hasClass('panel-tool-restore')){
-								this.restore();
-							} else {
-								this.maximize();
-							}
-							return false;
-						}
-					});
-				}
-				if (opts.minimizable){
-					opts.tools.push({
-						iconCls:"panel-tool-min",
-						handler:function(e){
-							this.minimize();
-							return false;
-						}
-					});
-				}
-				if (opts.collapsible){
-					opts.tools.push({
-						iconCls:"panel-tool-collapse",
-						handler:function(e){
-							if ($(e.target).hasClass('panel-tool-expand')){
-								this.expand(true);
-							} else {
-								this.collapse(true);
-							}
-							return false;
-						}
-					});
-				}
 				if (opts.tools){
 					for(var i=0; i<opts.tools.length; i++){
 						var t = $('<div></div>').addClass(opts.tools[i].iconCls).appendTo(tool);
@@ -119,14 +70,14 @@
 				this.header.addClass('panel-header-noborder');
 				this.body.addClass('panel-body-noborder');
 			}
+		},
+		_init:function(){
+			var opts = this.options;
 			if (opts.fit == true){
 				this.panel.bind('_resize.'+this.widgetName, function(){
 					self.resize();
 				});
 			}
-		},
-		_init:function(){
-			var opts = this.options;
 			if (opts.content){
 				this.body.html(opts.content);
 			}
@@ -197,11 +148,12 @@
 			this._trigger("setTitle")
 		},
 		getSize:function(){
+			var o = this.options;
 			return {
-				left:this.options.left,
-				top:this.options.top,
-				width:this.options.width,
-				height:this.options.height
+				left:o.left,
+				top:o.top,
+				width:o.width,
+				height:o.height
 			}
 		},
 		move:function(left,top){
@@ -221,31 +173,26 @@
 		},
 		collapse:function (){
 			var opts = this.options;
-			var tool = this.panel.find('>div.panel-header .panel-tool-collapse');
-			if (tool.hasClass('panel-tool-expand')) return;
-			if (this._trigger("boforeCollapse") === false) return;
-			tool.addClass('panel-tool-expand');
+			if (opts.collapsed === true) return true;
+			if (this._trigger("boforeCollapse") === false) return false;
 			this.body.hide();
 			opts.collapsed = true;
 			this._trigger("collapse");
+			return true;
 		},		
 		expand:function (){
 			var opts = this.options;
-			var tool = this.panel.find('>div.panel-header .panel-tool-collapse');
-			if (!tool.hasClass('panel-tool-expand')) return;
-			if (this._trigger("beforeExpand") === false) return;
-			tool.removeClass('panel-tool-expand');
+			if (opts.collapsed === false) return true;
+			if (this._trigger("beforeExpand") === false) return false;
 			this.body.show();
 			opts.collapsed = false;
 			this._trigger("expand");
 			this._loadData();
+			return true;
 		},
 		maximize:function (){
 			var opts = this.options;
-			var tool = this.panel.find('>div.panel-header .panel-tool-max');
-			if (tool.hasClass('panel-tool-restore')) return;
-			tool.addClass('panel-tool-restore');
-			
+			if (opts.maximized === true && opts.minimized === false) return true;
 			this.options.original = {
 				width: opts.width,
 				height: opts.height,
@@ -260,6 +207,7 @@
 			opts.minimized = false;
 			opts.maximized = true;
 			this._trigger("maximize");
+			return true;
 		},		
 		minimize : function (){
 			var opts = this.options;
@@ -267,15 +215,12 @@
 			opts.minimized = true;
 			opts.maximized = false;
 			this._trigger("minimize");
-		},		
+			return true;
+		},	
 		restore:function (){
 			var opts = this.options;
-			var tool = this.panel.find('>div.panel-header .panel-tool-max');
-			
-			if (!tool.hasClass('panel-tool-restore')) return;
-			
+			if (opts.maximized === false && opts.minimized === false) return true;
 			this.panel.show();
-			tool.removeClass('panel-tool-restore');
 			var original = opts.original;
 			opts.width = original.width;
 			opts.height = original.height;
@@ -286,18 +231,18 @@
 			opts.minimized = false;
 			opts.maximized = false;
 			this._trigger("restore");
+			return true;
 		},
 		close :function (forceClose){
 			var opts = this.options;
-			if(opts.closed === true){
-				return;
-			}
+			if(opts.closed === true){return true;}
 			if (forceClose != true){
-				if (this._trigger("beforeClose") === false) return;
+				if (this._trigger("beforeClose") === false) return false;
 			}
 			this.panel.hide();
 			opts.closed = true;
 			this._trigger("close");
+			return true;
 		},
 		open:function (forceOpen){
 			var opts = this.options;
@@ -339,4 +284,73 @@
 			}
 		}
 	});
+	
+	//设置版本
+	$.extend($.oz.panel, {
+		version: '1.0.0'
+	});
+	
+	
+	//扩展选项配置
+	$.widget.options($.oz.panel,{
+		collapsible: false,
+        minimizable: false,
+        maximizable: false,
+        closable: false
+    });
+	
+	//扩展工具配置
+	$.oz.panel.implement({
+		_render:function(){
+			var opts = this.options;
+			if (opts.title && !opts.noheader){
+				if (opts.closable){
+					opts.tools.push({
+						iconCls:"panel-tool-close",
+						handler:function(e){
+							this.close();
+							return false;
+						}
+					});
+				}
+				if (opts.maximizable){
+					opts.tools.push({
+						iconCls:"panel-tool-max",
+						handler:function(e){
+							if ($(e.target).hasClass('panel-tool-restore')){
+								this.restore()&&($(e.target).removeClass('panel-tool-restore'));
+							} else {
+								this.maximize()&&($(e.target).addClass('panel-tool-restore'));
+							}
+							return false;
+						}
+					});
+				}
+				if (opts.minimizable){
+					opts.tools.push({
+						iconCls:"panel-tool-min",
+						handler:function(e){
+							this.minimize();
+							return false;
+						}
+					});
+				}
+				if (opts.collapsible){
+					opts.tools.push({
+						iconCls:"panel-tool-collapse",
+						handler:function(e){
+							if ($(e.target).hasClass('panel-tool-expand')){
+								this.expand(true) && ($(e.target).removeClass('panel-tool-expand'));
+							} else {
+								this.collapse(true) && ($(e.target).addClass('panel-tool-expand'));
+							}
+							return false;
+						}
+					});
+				}
+			}
+			this.base();
+		}
+	});
+	
 })(jQuery);

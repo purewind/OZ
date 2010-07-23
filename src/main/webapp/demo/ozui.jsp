@@ -28,6 +28,7 @@
 					title:title,
 					closable:true,
 					iconCls:"oz-icon-default",
+					border:false,
 					content:'<iframe scrolling="auto" frameborder="0"  src="'+src+'" style="width:100%;height:100%;"></iframe>'
 				});
 			}
@@ -43,7 +44,13 @@
 			function addTabs(){
 				addTab("tabs","tabs","tabs/tabs.jsp");
 			}
+			function addForm(){
+				addTab("form","form","form/form.htm");
+			}
 			function closeOther(){
+				$("#mainTabs").tabs("closeOther");
+			}
+			function closeAll(){
 				$("#mainTabs").tabs("closeAll");
 			}
 		</script>
@@ -68,12 +75,14 @@
 		<button onclick="addLayout()">addLayout</button><br/>
 		<button onclick="addView()">addView</button><br/>
 		<button onclick="addTabs()">addTabs</button><br/>
+		<button onclick="addForm()">addForm</button><br/>
 		<button onclick="closeOther()">closeOther</button><br/>
+		<button onclick="closeAll()">closeAll</button><br/>
 	</div>
 	<div class="oz-layout-center {layoutRegion:{margins:'0 0 0 0',border:false}}" style="overflow: hidden;">
 		<div id="mainTabs" class="{tabs:{fit:true}}" style="display: none">
 			<div class="{panel:{title:'首页',border:false,fit:true,iconCls:'oz-icon-firstTab'}}" style="overflow: hidden;">
-				<iframe scrolling="auto" frameborder="0"  src="http://www.baidu.com" style="width:100%;height:100%;"></iframe>
+				<iframe scrolling="auto" frameborder="0"  src="about:blank" style="width:100%;height:100%;"></iframe>
 			</div>
 		</div>
 	</div>

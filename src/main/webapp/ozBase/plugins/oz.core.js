@@ -10,46 +10,16 @@
 	
 	//实现oz的静态方法
 	$.extend($.oz, {
-		version: "1.0.0",
-		contains: function(a, b) {
-			return document.compareDocumentPosition
-				? a.compareDocumentPosition(b) & 16
-				: a !== b && a.contains(b);
-		},
-
-		hasScroll: function(el, a) {
-			//If overflow is hidden, the element might have extra content, but the user wants to hide it
-			if ($(el).css('overflow') == 'hidden') { return false; }
-
-			var scroll = (a && a == 'left') ? 'scrollLeft' : 'scrollTop',
-				has = false;
-
-			if (el[scroll] > 0) { return true; }
-
-			// TODO: determine which cases actually cause this to happen
-			// if the element doesn't have the scroll set, see if it's possible to
-			// set the scroll
-			el[scroll] = 1;
-			has = (el[scroll] > 0);
-			el[scroll] = 0;
-			return has;
-		},
-
-		isOverAxis: function(x, reference, size) {
-			//Determines when x coordinate is over "b" element axis
-			return (x > reference) && (x < (reference + size));
-		},
-
-		isOver: function(y, x, top, left, height, width) {
-			//Determines when x, y coordinates is over "b" element
-			return $.oz.isOverAxis(y, top, height) && $.oz.isOverAxis(x, left, width);
-		}
+		
 	});
 
-	var _remove = $.fn.remove;
-	var _focus = $.fn.focus;
+	
 
 	//扩展JQuery对象的方法
+	
+	var _remove = $.fn.remove;
+	var _focus = $.fn.focus;
+	
 	$.fn.extend({
 		remove : function( selector, keepData ) {
 			return this.each(function() {
@@ -178,6 +148,10 @@
 	
 	
 	//实现继承的核心
+	//var NewClass = Class.extend({});
+	//构造出来的NewClass可以继承构造函数和基本属性函数的添加;
+	//var classObj = new Class();
+	//obj.extend({}) 只是单纯属性的添加。
 	var initializing = false, fnTest = /xyz/.test(function(){xyz;}) ? /\bbase\b/ : /.*/;
 	var Class = function() {};// 空函数
 	Class.extend = function(_instance, _static) {
@@ -187,11 +161,12 @@
 		var proto = new this;
 		extend.call(proto, _instance);
 		initializing = false;
-		//封装构造函数(constructor) ,当没有构造函数时,使其可以使用父类的构造函数
+		//的构造函数
 		var _constructor = proto.constructor;
 		var klass = proto.constructor = function() {
+			//在实现extend的过程是不是用下面方法，即上面的new this。
 			if (!initializing) {
-				if (this._constructing || this.constructor == klass) { // instantiation
+				if (this._constructing || this.constructor == klass) {
 					this._constructing = true;
 					_constructor.apply(this, arguments);
 					delete this._constructing;
@@ -216,13 +191,13 @@
 	};
 	Class.prototype = {	
 		extend: function(source, value) {
-			if (arguments.length > 1) { // extending with a name/value pair
+			if (arguments.length > 1) { // 复制key/value
 				var ancestor = this[source];
 				if (ancestor && (typeof value == "function") && // overriding a method?
-					//比较valueOf()避开死循环
+					//比较valueOf()，如果已经复制过，则不再次构造function避开死循环
 					(!ancestor.valueOf || ancestor.valueOf() != value.valueOf()) &&
 					fnTest.test(value)) {
-					// get the underlying method
+					//获取原方法
 					var method = value.valueOf();
 					//复写函数,使函数可以使用base来调用父类的属性(可以是函数也可以是属性)
 					value = function() {
@@ -232,12 +207,13 @@
 						this.base = previous;
 						return returnValue;
 					};
-					// point to the underlying method
+					// 指向原始的方法
 					value.valueOf = function(type) {
 						return (type == "object") ? value : method;
 					};
 					value.toString = Class.toString;
 				}
+				//特殊处理options的属性，使用深度复制。
 				if(source == "options"){
 					this[source] = $.extend(true,{},this[source],value);
 				}else{
@@ -245,21 +221,23 @@
 				}
 			} else if (source) { // extending with an object literal
 				var extend = Class.prototype.extend;
-				// if this object has a customised extend method then use it
+				// 如果是一个普通的继承，使用本身的方法
 				if (!initializing && typeof this != "function") {
 					extend = this.extend || extend;
 				}
+				//原始属性不复制列表
 				var proto = {toSource: null};
-				// do the "toString" and other methods manually
+				//不复制属性数组
 				var hidden = ["constructor", "toString", "valueOf"];
-					// if we are prototyping then include the constructor
+				// 是否复制构造函数constructor
 				var i = initializing ? 0 : 1;
+				//放入列表
 				while (key = hidden[i++]) {
 					if (source[key] != proto[key]) {
 						extend.call(this, key, source[key]);
 					}
 				}
-				// copy each of the source object's properties to this object
+				//复制属性到对象中
 				for (var key in source) {
 					if (!proto[key]) extend.call(this, key, source[key]);
 				}
@@ -267,9 +245,10 @@
 			return this;
 		},
 		base: function() {
-			// call this method from any other method to invoke that method's ancestor
+			// 祖先的base函数，由其他函数调用。
 		}
 	};
+	
 	
 	// 初始化基类
 	Class = Class.extend({
@@ -278,8 +257,8 @@
 		}
 	}, {
 		ancestor: Object,
-		version: "1.0",
-		/**扩展*/
+		version: "1.0.0",
+		/**实现在原有类上添加属性*/
 		implement: function() {
 			for (var i = 0; i < arguments.length; i++) {
 				if (typeof arguments[i] == "function") {
@@ -296,7 +275,6 @@
 			return String(this.valueOf());
 		}
 	});
-	
 	
 	//插件的核心
 	$.widget = function( name, base, prototype ) {
@@ -377,6 +355,12 @@
 		};
 	};
 	
+	//修改插件默认值
+	$.widget.options = function(base,options,deep){
+		base.implement(function(p){
+			$.extend(deep||false,p.options,options)
+		})
+	}
 	
 	//实现插件基类
 	$.Widget = Class.extend({
@@ -528,6 +512,9 @@ var OZ={
 	/** 空函数 */
 	emptyFn: function(){}
 };
+
+//重新赋值到OZ
+$.extend(OZ,$.oz);
 
 /** 调试控制台的幻象，实际的控制台见oz.log.js */
 var ozlog = {
