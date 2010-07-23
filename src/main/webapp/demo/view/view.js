@@ -69,6 +69,7 @@ var thisPage = {
 			sortOrder: 'asc',
 			fit: true,
 			width:500,height:300,
+			border: false,
 			nowrap: false,
 			striped: true,
 			remoteSort: false,

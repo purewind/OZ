@@ -4,7 +4,7 @@
  */
 
 .oz-page{width: 100%;height: 100%;margin: 0px;padding: 0px;border:0;}
-.oz-page-top{width: 100%;height: 30px;overflow: hidden;
+.oz-page-top{width: 100%;height: 30px;overflow: hidden;border-bottom:1px solid #8DB2E3;
 	background-repeat: repeat-x;background-image:url(images/page/toolbar_bg.gif);
 }
 
