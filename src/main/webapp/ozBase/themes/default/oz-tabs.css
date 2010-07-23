@@ -363,4 +363,61 @@ ul.tabs-strip li.tabs-edge {
 
 .tabs-scrolling .tabs-scroller-left,.tabs-scrolling .tabs-scroller-right{
 	display: block;
-} 
+}
+
+/*test*/
+ul.tabs-strip{
+	
+}
+
+ul.tabs-strip li {
+    z-index: 10;
+    position:relative;
+    margin: 0px -10px 0px 0px;
+}
+
+.tabs-strip-top .tabs-strip-active {
+	z-index: 1000;
+}
+.tabs-strip .tabs-strip-close {
+    margin-right: 6px;
+}
+.tabs-strip .tabs-strip-inner{
+    margin-left: 6px;
+}
+
+.tabs-strip-top .tabs-right {
+	background: transparent url(images/tabs/tabs-sprite2.gif) no-repeat -12px -51px;
+    padding-left:10px;
+}
+
+.tabs-strip-top .tabs-left {
+	background: transparent url(images/tabs/tabs-sprite2.gif) no-repeat right -376px;
+    padding-right:10px;
+}
+
+.tabs-strip-top .tabs-strip-inner {
+	background: transparent url(images/tabs/tabs-sprite2.gif) repeat-x 0 -201px;
+}
+
+.tabs-strip-top .tabs-strip-over .tabs-right {
+	 background-position:-12px -101px;
+}
+.tabs-strip-top .tabs-strip-over .tabs-left {
+	 background-position:right -426px;
+}
+.tabs-strip-top .tabs-strip-over .tabs-strip-inner {
+	 background-position:0 -251px;
+}
+
+.tabs-strip-top .tabs-strip-active .tabs-right {
+	background-position: -12px 0;
+}
+
+.tabs-strip-top .tabs-strip-active .tabs-left {
+	background-position: right -327px;
+}
+
+.tabs-strip-top .tabs-strip-active .tabs-strip-inner {
+	background-position: 0 -151px;
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>视图开发</title>
+	<link rel="stylesheet" type="text/css" href="../../ozBase/themes/default/oz-common.css" />
+	<link rel="stylesheet" type="text/css" href="../../ozBase/themes/default/oz-page.css" />
+	<link rel="stylesheet" type="text/css" href="../../ozBase/themes/default/oz-toolbar.css" />
+	<link rel="stylesheet" type="text/css" href="../../ozBase/themes/default/oz-toolbar-button.css" />
+	<link rel="stylesheet" type="text/css" href="../../ozBase/themes/default/oz-log.css" />
+	<!-- 页签文件 -->
+	<link rel="stylesheet" type="text/css" href="../../ozBase/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../ozBase/themes/default/oz-panel.css">
+	<link rel="stylesheet" type="text/css" href="../../ozBase/themes/default/oz-tabs.css">
+		
+</head>
+<body class="oz-body">
+<div id="page" class="oz-page">
+	<div id="page-top" class="oz-page-top">
+		<!-- 工具条  -->
+		<div id="toolbar"></div>
+	</div>
+	<div id="page-center" class="oz-page-form">
+		<form id="thisForm" class="oz-form" method="post">
+			<!-- 标题  -->
+			<div class="oz-form-title">表单标题</div>
+			<!-- 表单域  -->
+			<div class="oz-form-fields">
+				<table cellpadding="0" cellspacing="4">
+					<tr class="oz-form-emptyTR"> 
+						<td width="100"></td>
+						<td width="300"></td>
+						<td width="100"></td>
+						<td></td>
+					</tr>
+					<tr> 
+						<td class="oz-form-label">必&nbsp;填&nbsp;域：</td>
+						<td class="oz-property">
+							<input type="text" class="oz-form-btField" value="中国China">
+						</td>
+						<td class="oz-form-label">必&nbsp;填&nbsp;域：</td>
+						<td class="oz-property">
+							<select class="oz-form-btField">
+								<option>中国China</option>
+								<option>英国English</option>
+							</select>
+						</td>
+					</tr>
+					<tr> 
+						<td class="oz-form-label">只&nbsp;读&nbsp;域：</td>
+						<td class="oz-property">
+							<input type="text" class="oz-form-zdField" value="中国China">
+						</td>
+						<td class="oz-form-label">只&nbsp;读&nbsp;域：</td>
+						<td class="oz-property">
+							<select class="oz-form-zdField">
+								<option>中国China</option>
+								<option>英国English</option>
+							</select>
+						</td>
+					</tr>
+					<tr> 
+						<td class="oz-form-label">普&nbsp;通&nbsp;域：</td>
+						<td class="oz-property">
+							<input type="text" class="oz-form-field" value="中国China">
+						</td>
+						<td class="oz-form-label">普&nbsp;通&nbsp;域：</td>
+						<td class="oz-property">
+							<select class="oz-form-field">
+								<option>中国China</option>
+								<option>英国English</option>
+							</select>
+						</td>
+					</tr>
+					<tr> 
+						<td class="oz-form-label">日&nbsp;期&nbsp;域：</td>
+						<td class="oz-property">
+							<input type="text" readonly="readonly" class="oz-dateField" value="2009-01-01">
+						</td>
+						<td class="oz-form-label">时&nbsp;间&nbsp;域：</td>
+						<td class="oz-property">
+							<input type="text" readonly="readonly" class="oz-dateTimeField" value="2009-01-01 09:10:10">
+						</td>
+					</tr>
+					<tr> 
+						<td class="oz-form-topLabel">大文本域：</td>
+						<td class="oz-property">
+							<textarea class="oz-form-field">大文本域</textarea>
+						</td>
+						<td class="oz-form-topLabel">大文本域：</td>
+						<td class="oz-property">
+							<textarea class="oz-form-field">大文本域
+							大文本域
+							大文本域
+							大文本域
+							大文本域</textarea>
+						</td>
+					</tr>
+				</table>			
+			</div>
+			<!-- 页签 -->
+			<div class="oz-form-tabs">
+				<div id="tabCt" class="border {tabs:{}}" style="height:300px;border-width:0px;background-color: transparent; ">
+					<div class="{panel:{title:'首页',border:false,fit:true,iconCls:'oz-icon-firstTab'}}">欢迎页</div>
+					<div class="{panel:{title:'功能',border:false,fit:true,iconCls:'oz-icon-default'}}">功能1</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+</body>
+<script type="text/javascript" src="../../ozBase/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="../../ozBase/plugins/jquery.metadata.js"></script>
+		
+<!-- jquery.ui的js也可以不引用，少了拖动调试控制台的功能而已 -->
+<script type="text/javascript" src="../../ozBase/jqueryui/plugins/jquery.ui.core.js"></script>
+<script type="text/javascript" src="../../ozBase/jqueryui/plugins/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="../../ozBase/jqueryui/plugins/jquery.ui.mouse.js"></script>
+<script type="text/javascript" src="../../ozBase/jqueryui/plugins/jquery.ui.draggable.js"></script>
+
+<script type="text/javascript" src="../../ozBase/plugins/oz.core.js"></script>
+<script type="text/javascript" src="../../ozBase/plugins/oz.log.js"></script>
+<script type="text/javascript" src="../../ozBase/plugins/oz.toolbar.js"></script>
+<!-- 页签依赖文件 -->
+<script type="text/javascript" src="../../ozBase/plugins/oz.panel.js"></script>
+<script type="text/javascript" src="../../ozBase/plugins/oz.tabs.js"></script>
+
+<script type="text/javascript" src="form-tab.js"></script>
+</html>

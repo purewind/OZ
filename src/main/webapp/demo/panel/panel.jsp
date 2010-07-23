@@ -13,14 +13,11 @@
 		<script>
 			function showPanel(){
 				$("#panel1").panel({
-					title:"hello",
-					closable:true,
-					maximizable:true,
-					minimizable:true,
-					collapsible:true,
+					title:"hello"
 					fit:true
 				});
-				$("#panel2").panel({content:'<iframe scrolling="no" frameborder="0"  src="../view/view.htm" style="width:100%;height:100%;"></iframe>'});
+				$("#panel2").panel();
+				$("#panel1").panel("abc");
 			}
 			$(function(){
 				showPanel();
@@ -29,10 +26,10 @@
 	</head>
 <body>
 	<div style="width:300px;height:300px;border: 1px solid red;">
-		<div id="panel1">panel1</div>
+		<div id="panel1"><iframe scrolling="no" frameborder="0"  src="../view/view.htm" style="width:100%;height:100%;"></iframe></div>
 	</div>
-	<div style="position: absolute;left: 400px;top: 10px;width:600px;height:600px;border: 1px solid red;">
-		<div id="panel2" class="{panel:{title:'功能菜单',maximizable:true,minimizable:true}}" style="width:500px;height:500px;">panel2</div>
+	<div style="position: absolute;left: 400px;top: 10px;width:400px;height:300px;border: 1px solid red;overflow: auto;">
+		<div id="panel2" class="{panel:{title:'功能菜单',maximizable:true,minimizable:true,closable:true,collapsible:true}}" style="width:300px;height:200px;">panel2</div>
 	</div>
 </body>
 </html>

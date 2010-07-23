@@ -29,14 +29,15 @@ var POS = {
 }
 $.widget("oz.splitbar",$.oz.mouse,{
 	_render:function(){
-		this.target = this.options.target;
-		this.orientation = this.options.orientation;
-		this.placement = this.options.placement;
-		this.width = this.options.width||5;
-		this.maxSize = this.options.maxSize||500;
-		this.minSize = this.options.minSize||10;
+		var self = this, o = this.options;
+		this.target = o.target;
+		this.orientation = o.orientation;
+		this.placement = o.placement;
+		this.width = o.width||5;
+		this.maxSize = o.maxSize||500;
+		this.minSize = o.minSize||10;
 		
-		this.element.addClass("layout-split layout-split-"+this.options.region).disableSelection();
+		this.element.addClass("layout-split layout-split-"+o.region).disableSelection();
 				
 		//设置方向样式
 		if(this.orientation == POS.HORIZONTAL){
@@ -47,11 +48,12 @@ $.widget("oz.splitbar",$.oz.mouse,{
 		//创建代理
  		var cls = 'layout-split-proxy' ;
  		this.proxy = $("<div/>").insertBefore(this.element)
- 		.addClass(cls + " " +(this.options.orientation == POS.HORIZONTAL ? cls +'-h' : cls + '-v'))
+ 		.addClass(cls + " " +(o.orientation == POS.HORIZONTAL ? cls +'-h' : cls + '-v'))
  		.disableSelection().css({visibility:"hidden",display: "none"});
  		this._mouseInit();
 	},
 	_mouseStart: function(event) {
+		var  o = this.options;
 		//显示代理
 		this.proxy.css(this.element.position()).css({visibility:"visible",display: "block"})
 		.width(this.element.width()).height(this.element.height());
@@ -62,10 +64,10 @@ $.widget("oz.splitbar",$.oz.mouse,{
 		//记录其实位置
 		this.originalMousePosition = {x: event.pageX, y: event.pageY};
 		this.proxyPosition = this.proxy.position();
-		if(this.options.orientation == POS.HORIZONTAL){
-			this.oldSize = this.options.target.element.width();
+		if(o.orientation == POS.HORIZONTAL){
+			this.oldSize = o.target.element.width();
 		}else{
-			this.oldSize = this.options.target.element.height();
+			this.oldSize = o.target.element.height();
 		}
 		
 		if(this.placement == POS.RIGHT || this.placement == POS.BOTTOM){
@@ -107,8 +109,8 @@ $.widget("oz.splitbar",$.oz.mouse,{
 		if(this.mark){this.mark.remove();}
 	},
 	setPosition:function(){
-		var opts = this.target.options;
-		var h = opts.height,w = opts.width,l = opts.left||0,t = opts.top||0;
+		var o = this.target.options;
+		var h = o.height,w = o.width,l = o.left||0,t = o.top||0;
 		if(this.orientation == POS.HORIZONTAL){
 			if(this.placement == POS.LEFT){
 				this.element.css({width:this.width,height:h,top:t,left:l+w});
@@ -147,8 +149,8 @@ $.widget("oz.splitbar2",$.oz.splitbar,{
 	},
 	_render:function(){
 		this.base();
-		var opts = this.options;
-		this.collEl = $("<div/>").appendTo(this.element).addClass("oz-layout-mini oz-layout-mini-"+opts.region).html("&#160;");
+		var o = this.options;
+		this.collEl = $("<div/>").appendTo(this.element).addClass("oz-layout-mini oz-layout-mini-"+o.region).html("&#160;");
         this.collEl.hoverClass('oz-layout-mini-over');
         this.collEl.bind("click",{obj:this},this._onClick);       
 	},
@@ -176,23 +178,22 @@ $.widget("oz.layoutRegion",$.oz.panel,{
 		collapsible:false
 	},
 	_render: function() {
-		this.options.fit = false;
-		var c= this.options.collapsible;
-		this.options.collapsible = false;
+		var self = this, o = this.options;
+		o.fit = false;
+		var c= o.collapsible;
+		o.collapsible = false;
 		this.base();
-		this.options.collapsible = c;
-		var opts = this.options;
-		var self = this;
-		this.margins = parseMargins(this.options.margins);
-		this.cmargins = parseMargins(this.options.cmargins);
+		o.collapsible = c;
+		this.margins = parseMargins(o.margins);
+		this.cmargins = parseMargins(o.cmargins);
 		this.panel.addClass("oz-layout-region");
-		this.layout = this.options.layout;
+		this.layout = o.layout;
 		
-		if(this.options.split == true){
+		if(o.split == true){
 			this.splitbar = $('<div></div>');
-			var splitType = this.options.collapsible == true?"splitbar2":"splitbar";
-			this.splitbar.insertAfter(this.panel)[splitType]($.extend(this._splitSettings[this.options.region],
-					{maxSize:this.options.maxSize,minSize:this.options.minSize,region:this.options.region,target:this}));
+			var splitType = o.collapsible == true?"splitbar2":"splitbar";
+			this.splitbar.insertAfter(this.panel)[splitType]($.extend(this._splitSettings[o.region],
+					{maxSize:o.maxSize,minSize:o.minSize,region:o.region,target:this}));
 			this.element.bind("resize",function(){
 				if(self.options.split == true){
 					self.splitbar[splitType]("setPosition");
@@ -229,29 +230,29 @@ $.widget("oz.layoutRegion",$.oz.panel,{
         }
     },
     collapse:function (){
-		var opts = this.options;
-		opts.original = {
-				width: opts.width,
-				height: opts.height
+		var o = this.options;
+		o.original = {
+				width: o.width,
+				height: o.height
 			};
-		if(this._splitSettings[opts.region].orientation == POS.HORIZONTAL){
-			opts.width = 0;
+		if(this._splitSettings[o.region].orientation == POS.HORIZONTAL){
+			o.width = 0;
 		}else{
-			opts.height = 0;
+			o.height = 0;
 		}
 		this.panel.css("visibility","hidden");
 		this.resize({layout:true});
-		opts.collapsed = true;
+		o.collapsed = true;
 		this._trigger("collapse");
 	},		
 	expand:function (){
-		var opts = this.options;
-		var original = opts.original;
-		opts.width = original.width;
-		opts.height = original.height;
+		var o = this.options;
+		var original = o.original;
+		o.width = original.width;
+		o.height = original.height;
 		this.panel.css("visibility","visible");
 		this.resize({layout:true});
-		opts.collapsed = false;
+		o.collapsed = false;
 		this._trigger("expand");
 	}
 });
@@ -298,8 +299,8 @@ $.widget("oz.layout",{
 		this.layout();
 	},
 	layout:function(){
-		var opts = this.options;
-		if (opts.fit == true){
+		var o = this.options;
+		if (o.fit == true){
 			var p = this.element.parent();
 			this.element.width(p.width()).height(p.height());
 		}
