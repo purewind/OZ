@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>对话框开发</title>
+	<link rel="stylesheet" type="text/css" href="../../ozBase/themes/default/oz-common.css" />
+	<link rel="stylesheet" type="text/css" href="../../ozBase/themes/default/oz-page.css" />
+</head>
+<body style="background-color: yellow;">
+	<h1>这是iframe内的内容,黄色背景部分</h1>
+	<br/>aaaaa
+	<br/>aaaaa
+	<br/>aaaaa
+	<br/>aaaaa
+	<br/>-----
+	<br/>aaaaa
+	<br/>aaaaa
+	<br/>aaaaa
+	<br/>aaaaa
+	<br/>eeeee
+</body>
+<script type="text/javascript">
+function ozDlgOkFn(){
+	parent.ozlog.info("run iframe function 'ozDlgOkFn'");
+	return "ozDlgOkFn";
+}
+function ozDlgSpecFn(){
+	parent.ozlog.info("run iframe function 'ozDlgSpecFn'");
+	return false;
+}
+</script>
+</html>
