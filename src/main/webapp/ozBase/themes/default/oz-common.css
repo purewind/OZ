@@ -11,9 +11,12 @@
 html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{
 	margin:0;
 	padding:0;
+}
+div,span,dl,dt,dd,ul,ol,li,pre,form,fieldset,input,textarea,p,blockquote,th,td{
 	font-size:12px;
 	font-family:"宋体","Tahoma","verdana","arial","helvetica","sans-serif";
 }
+h1,h2,h3,h4,h5,h6{font-size:100%;}
 img,body,html{border:0;}
 address,caption,cite,code,dfn,em,strong,th,var{
 	font-style:normal;
@@ -21,7 +24,6 @@ address,caption,cite,code,dfn,em,strong,th,var{
 }
 ol,ul{list-style:none;}
 caption,th{text-align:left;}
-h1,h2,h3,h4,h5,h6{font-size:100%;}
 q:before,q:after{content:'';}
 input{
 	/*height:20px;*/
@@ -56,3 +58,5 @@ a:hover { text-decoration:none; COLOR:#7D7B7B; }
 .oz-body{overflow: hidden;background-color: #DEEBF4;}
 /*数字字体*/
 .GeorgiaFont{font-family:Georgia, Times New Roman, Times, serif;}
+/*嘉瑶logo*/
+.oz-icon16 {background:url("images/logo16.gif") no-repeat scroll 0 0 transparent;}
