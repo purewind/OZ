@@ -25,7 +25,6 @@
  */
  
 if(typeof OZ == "undefined") OZ={};
-ozlog.toggle();
 OZ.Dialog = function(config){
 	if(ozlog.profileEnable) ozlog.profile("OZ.Dialog-->create instance");
 	//设置默认值

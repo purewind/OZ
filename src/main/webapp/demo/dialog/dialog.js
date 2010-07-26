@@ -65,6 +65,7 @@ function create3(){
 }
 var dlg1,dlg2,dlg3;
 jQuery(function($){
+	ozlog.toggle();
 	create1();
 	create2();
 	create3();
