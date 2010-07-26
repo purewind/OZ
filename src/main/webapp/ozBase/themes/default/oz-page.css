@@ -105,3 +105,19 @@
 .oz-form-tabs .border{width: 800px;	margin: 0px 10px 10px 10px;min-height:30px;
 	border-color: #76ABD3;border-style: solid;border-width: 1px;background-color: white;
 }
+
+/* easyui消息框的扩展配置 */
+.messager-body textarea{
+	border:1px solid #CCCCCC;
+	width:100%;
+	_width:266px;;
+	overflow: auto;
+	height: 70px;
+	min-height: 50px;
+	padding:4px 2px 4px 2px;
+}
+.messager-body input{
+	height:20px;
+	width:100%;
+	_width:266px;;
+}
