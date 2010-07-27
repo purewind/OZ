@@ -9,6 +9,12 @@
 	}
 	
 	var tabId = 0;
+	$.widget("oz.panels",{
+		_render: function() {
+			//放入所有panel的容器
+			this.panels = $([]);
+		}
+	});
 	
 	$.widget("oz.tabs",{
 		options:{
@@ -292,6 +298,7 @@
 	        var pos = this._getScrollPos(), area = this._getScrollArea();
 	        var left = tab.position().left + pos;
 	        var right = left + tab.outerWidth(true);
+	        alert([left,right]);
 	        if(left < pos){
 	            this._scrollTo(left);
 	        }else if(right > (pos + area)){
@@ -370,6 +377,7 @@
 	
 	//实现其他的方法
 	$.oz.tabs.implement({
+		//关闭所有窗口
 		closeAll:function(){
 			var tabs  = this.tabs;
 			for (var i = tabs.length-1; i>=0 ; i--) {
@@ -381,6 +389,7 @@
 			}
 			tabs.length > 0 && this.activeTab(tabs[0]);
 		},
+		//关闭其他所有窗口
 		closeOther:function(closeTab){
 			var tabs  = this.tabs;
 			closeTab = closeTab || this.getActive();
@@ -393,6 +402,13 @@
 				}
 			}
 			closeTab && this.activeTab(closeTab) ;
+		},
+		//关闭当前窗口
+		closeActive:function(){
+			var a = this.getActive();
+			if(a){
+				this.close(a);
+			}
 		}
 	});
 })(jQuery);

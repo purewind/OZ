@@ -13,8 +13,6 @@
 		
 	});
 
-	
-
 	//扩展JQuery对象的方法
 	
 	var _remove = $.fn.remove;

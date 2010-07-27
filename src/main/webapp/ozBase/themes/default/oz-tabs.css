@@ -387,7 +387,7 @@ ul.tabs-strip li {
 }
 
 .tabs-strip-top .tabs-right {
-	background: transparent url(images/tabs/tabs-sprite2.gif) no-repeat -12px -51px;
+	background: transparent url(images/tabs/tabs-sprite2.gif) no-repeat -12.5px -51px;
     padding-left:10px;
 }
 
@@ -401,7 +401,7 @@ ul.tabs-strip li {
 }
 
 .tabs-strip-top .tabs-strip-over .tabs-right {
-	 background-position:-12px -101px;
+	 background-position:-12.5px -101px;
 }
 .tabs-strip-top .tabs-strip-over .tabs-left {
 	 background-position:right -426px;
@@ -411,7 +411,7 @@ ul.tabs-strip li {
 }
 
 .tabs-strip-top .tabs-strip-active .tabs-right {
-	background-position: -12px 0;
+	background-position: -12.5px 0;
 }
 
 .tabs-strip-top .tabs-strip-active .tabs-left {

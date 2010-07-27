@@ -13,7 +13,7 @@
 		<script>
 			function showPanel(){
 				$("#panel1").panel({
-					title:"hello"
+					title:"hello",
 					fit:true
 				});
 				$("#panel2").panel();
@@ -26,7 +26,9 @@
 	</head>
 <body>
 	<div style="width:300px;height:300px;border: 1px solid red;">
-		<div id="panel1"><iframe scrolling="no" frameborder="0"  src="../view/view.htm" style="width:100%;height:100%;"></iframe></div>
+		<div id="panel1">
+		<iframe scrolling="no" frameborder="0"  src="../view/view.htm" style="width:100%;height:100%;"></iframe>
+		</div>
 	</div>
 	<div style="position: absolute;left: 400px;top: 10px;width:400px;height:300px;border: 1px solid red;overflow: auto;">
 		<div id="panel2" class="{panel:{title:'功能菜单',maximizable:true,minimizable:true,closable:true,collapsible:true}}" style="width:300px;height:200px;">panel2</div>
